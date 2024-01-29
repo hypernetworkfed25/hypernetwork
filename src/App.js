@@ -5,6 +5,8 @@ function App() {
   return (
     <div>
       <h1>Hyper Network</h1>
+      Search
+      <input type="search" />
     </div>
   );
 }
