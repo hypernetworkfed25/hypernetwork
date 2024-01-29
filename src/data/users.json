@@ -2,7 +2,7 @@
     "users": [
       {
         "id": 1,
-        "name": "Oliver",
+        "firstName": "Oliver",
         "lastName": "Redondo",
         "hyperEmail": "oliver.redondo@hyperisland.se",
         "confirmHyperEmail": "oliver.redondo@hyperisland.se",
@@ -35,7 +35,7 @@
       },
       {
         "id": 2,
-        "name": "Hifza",
+        "firstName": "Hifza",
         "lastName": "Batool",
         "email": "hifza.batool@hyperisland.se",
         "confirmEmail": "hifza.batool@hyperisland.se",
@@ -68,7 +68,7 @@
       },
       {
         "id": 3,
-        "name": "Ahmed",
+        "firstName": "Ahmed",
         "lastName": "Sharif",
         "hyperEmail": "ahmed.sharif@hyperisland.se",
         "confirmHyperEmail": "ahmed.sharif@hyperisland.se",
@@ -101,7 +101,7 @@
       },
       {
         "id": 4,
-        "name": "Jinjing",
+        "firstName": "Jinjing",
         "lastName": "Wu",
         "hyperEmail": "jinjing.wu@hyperisland.se",
         "confirmHyperEmail": "jinjing.wu@hyperisland.se",
@@ -131,7 +131,6 @@
             "memberId": "U05N7T0JJNM"
           }
         }
-      },
-      // Add more users as needed
+      }
     ]
   }
