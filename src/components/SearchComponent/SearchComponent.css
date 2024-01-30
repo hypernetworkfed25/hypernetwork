@@ -1,13 +1,62 @@
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrap {
+  display: grid;
+  grid-template-columns: 250px 1fr; /* Set the first column to a fixed width */
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-areas:
+    "top-left top-right"
+    "bottom-left bottom-right";
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  position: relative; /* Set position to establish a stacking context */
+  z-index: 1; /* Set a z-index for stacking */
+}
+
 .container {
   display: flex;
-  /* flex-direction: column; */
-  align-items: center;
-  padding: 20px;
+  padding: 0px;
+  align-items: flex-start;
+  gap: 20px;
 }
 
 .input {
   outline: 0;
-  border-width: 0 0 2px;
-  width: 200px;
+  border-width: 0 0 0px;
+  width: 400px;
   font-size: 2rem;
+  align-items: flex-end;
+  position: relative; /* Set position to enable z-index */
+  z-index: 2;
+}
+
+.top-left {
+  grid-area: top-left;
+  display: flex;
+  align-items: flex-end;
+}
+
+.top-right {
+  grid-area: top-right;
+}
+
+.bottom-left {
+  grid-area: bottom-left;
+  border-top: 2px solid black; /* Add a 2px border to the bottom of the first row */
+}
+
+.bottom-right {
+  grid-area: bottom-right;
+  border-top: 2px solid black; /* Add a 2px border to the bottom of the first row */
+  width: 650px;
+}
+
+.no-border {
+  outline: 0;
+  border-width: 0 0 0px;
 }

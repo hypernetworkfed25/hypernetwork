@@ -60,7 +60,8 @@ const extractHardSkills = (hardSkills) => {
   
     return (
       <>
-      <div className="container">
+      <div className="wrap">
+        <div className="top-left">
         {/* Text field */}
         <input
           type="text"
@@ -70,9 +71,11 @@ const extractHardSkills = (hardSkills) => {
           className="input"
           autoFocus
         />
-  
+        </div>
+       <div className="bottom-left"></div>
+   <div className="container bottom-right">
         {/* Dropdown menus */}
-        <select value={selectedProgram} onChange={e => setSelectedProgram(e.target.value)}>
+        <select value={selectedProgram} onChange={e => setSelectedProgram(e.target.value)} className="no-border">
           <option value="">Select Program</option>
           {/* Extract unique programs from usersData */}
           {[...new Set(usersData.map(user => user.program))].map(program => (
@@ -85,7 +88,8 @@ const extractHardSkills = (hardSkills) => {
         <select
           multiple
           value={selectedLanguages}
-          onChange={e => setSelectedLanguages(Array.from(e.target.selectedOptions, option => option.value))}
+          onChange={e => setSelectedLanguages(Array.from(e.target.selectedOptions, option => option.value)) }
+          className="no-border"
         >
           <option value="">Select Languages</option>
           {/* Extract unique languages from usersData */}
@@ -121,6 +125,7 @@ const extractHardSkills = (hardSkills) => {
           />
           Show only users with Portfolio
         </label>
+        </div>
         </div>
         // Display filtered users
         {filteredUsers.map(user => (
