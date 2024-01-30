@@ -67,6 +67,8 @@ const extractHardSkills = (hardSkills) => {
           placeholder="Search..."
           value={searchText}
           onChange={e => setSearchText(e.target.value)}
+          className="input"
+          autoFocus
         />
   
         {/* Dropdown menus */}
