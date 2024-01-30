@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import "./App.css";
 import Search from "./Components/Search";
 import data from "./users.json";
+import SearchComponent from "./Components/SearchComponent/SearchComponent";
+import "./App.css";
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
@@ -35,6 +36,7 @@ function App() {
       </div>
       Search
       <input type="search" />
+      <SearchComponent />
     </div>
   );
 }
