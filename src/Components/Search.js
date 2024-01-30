@@ -22,7 +22,7 @@ const Search =({searchData, onSearch}) => {
 
             return hasSearchTerm;
           });
-          console.log("searchResults:", searchResults);
+         
           onSearch(searchResults);
         }
       };
