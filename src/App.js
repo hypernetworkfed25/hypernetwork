@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import './App.css';
 import Search from './Components/Search';
+import Languages from './Components/Languages';
 import data from './users.json';
 
 function App() {
