@@ -4,3 +4,10 @@
   align-items: center;
   padding: 20px;
 }
+
+.input {
+  outline: 0;
+  border-width: 0 0 2px;
+  width: 200px;
+  font-size: 2rem;
+}
