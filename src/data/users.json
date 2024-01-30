@@ -37,8 +37,8 @@
         "id": 2,
         "firstName": "Hifza",
         "lastName": "Batool",
-        "email": "hifza.batool@hyperisland.se",
-        "confirmEmail": "hifza.batool@hyperisland.se",
+        "hyperEmail": "hifza.batool@hyperisland.se",
+        "confirmHyperEmail": "hifza.batool@hyperisland.se",
         "program": "Data Analyst",
         "languages": ["English", "Urdu"],
         "hardSkills": [

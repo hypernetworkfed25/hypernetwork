@@ -1,12 +1,13 @@
-import React,{useState} from 'react';
+import React,{ useState, useEffect } from 'react';
 import './App.css';
+import SearchComponent from './components/SearchComponent/SearchComponent';
+
 
 function App() {
   return (
     <div>
       <h1>Hyper Network</h1>
-      Search
-      <input type="search" />
+     <SearchComponent />
     </div>
   );
 }
