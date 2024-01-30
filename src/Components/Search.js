@@ -7,6 +7,12 @@ const Search =({searchData, onSearch}) => {
         setSearchTerm(event.target.value);
     };
 
+    const handleKeyDown = (event) => {
+      if (event.key === "Enter") {
+        handleSearch();
+      }
+    };
+
     const handleSearch = () => {
        
 
@@ -18,7 +24,11 @@ const Search =({searchData, onSearch}) => {
               users.firstName.toLowerCase().includes(searchTermLowerCase) ||
               users.program.toLowerCase().includes(searchTermLowerCase) ||
               lowercasedLanguages.includes(searchTermLowerCase) ||
-              users.hardSkills.some((skill) => skill.skill.toLowerCase().includes(searchTermLowerCase)) ;
+              users.hardSkills.some((skill) => skill.skill.toLowerCase().includes(searchTermLowerCase)) ||
+              users.portfolio.toLowerCase().includes(searchTermLowerCase)||
+              (users.contact && users.contact.email.toLowerCase().includes(searchTermLowerCase));
+             
+              
 
             return hasSearchTerm;
           });
@@ -29,10 +39,13 @@ const Search =({searchData, onSearch}) => {
 
     return (
         <div>
-            <input type="text" placeholder="Search...." value={searchTerm} 
-            onChange={handleInputChange} >
+            <input type="text" 
+            placeholder="Search...." 
+            value={searchTerm} 
+            onChange={handleInputChange} 
+            onKeyDown={handleKeyDown} >
             </input>
-            <button onClick={handleSearch}> Click me</button>
+            
         </div>
     );
 };
