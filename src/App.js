@@ -32,6 +32,7 @@ function App() {
             </li>
           ))}
         </ul>
+        <p>Soft Skills:</p>
         <p>Availbility:{result.availability}</p>
         {result.portfolio && <p>Portfolio: {result.portfolio}</p>}
 
