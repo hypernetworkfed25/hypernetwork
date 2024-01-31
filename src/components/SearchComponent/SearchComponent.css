@@ -16,6 +16,7 @@ body {
   grid-row-gap: 0px;
   position: relative; /* Set position to establish a stacking context */
   z-index: 1; /* Set a z-index for stacking */
+  background-color: white;
 }
 
 .container {
@@ -33,6 +34,7 @@ body {
   align-items: flex-end;
   position: relative; /* Set position to enable z-index */
   z-index: 2;
+  overflow: visible;
 }
 
 .top-left {
