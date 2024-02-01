@@ -2,9 +2,10 @@ import "./App.css";
 import React from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 
+import StudentComponent from "./components/StudentComponents/StudentComponent";
 import SearchComponent from "./components/SearchComponent/SearchComponent";
 
-function App() {
+const App = () => {
   return (
     <ChakraProvider>
       <div style={{ minHeight: "100vh" }}>
@@ -21,8 +22,9 @@ function App() {
       </div>
 
       <SearchComponent />
+      <StudentComponent />
     </ChakraProvider>
   );
-}
+};
 
 export default App;
