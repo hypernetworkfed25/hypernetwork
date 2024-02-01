@@ -25,7 +25,10 @@ const StudentComponent = () => {
             </h2>
           </div>
           <div className="student-info">
-            <div className="student-detail">Program: {user.program}</div>
+            <div className="student-detail">
+              <b>Program: </b>
+              {user.program}
+            </div>
             <div className="student-info-unexpanded">
               <div className="student-detail">
                 {" "}
@@ -39,9 +42,10 @@ const StudentComponent = () => {
             {expandedId === user.id && (
               <div className="student-expanded-details">
                 <div className="student-hard-skills">
+                  <b>HardSkills:</b>
                   {user.hardSkills.map((skill, index) => (
                     <div key={index}>
-                      <b>{skill.skill}</b>: {skill.comment}
+                      {skill.skill}: {skill.comment}
                     </div>
                   ))}
                 </div>
