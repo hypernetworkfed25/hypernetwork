@@ -1,4 +1,42 @@
-h1{
-  text-decoration: underline;
-  text-align: center;
+/* App.css */
+
+.container {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+/*.input {
+  outline: 0;
+  border-width: 0 0 2px;
+  width: 200px;
+  font-size: 2rem;
+}*/
+
+.style__language {
+  display: flex;
+  align-items: center;
+  
+}
+.dropdown__list{
+  
+}
+
+/* Adjust margin or padding as needed */
+.select-language {
+  margin-left: 20px;
+}
+
+/* Style the language dropdown as a div or any suitable element */
+.select-language div {
+  padding: 10px;
+  border: 1px solid rgb(200, 13, 50);
+  color: rgb(200, 13, 50);
+  cursor: pointer;
+}
+
+/* Optionally, style the dropdown arrow or indicator */
+.select-language::after {
+  content: '\25BC'; /* Unicode character for down arrow */
+  margin-left: 5px;
 }

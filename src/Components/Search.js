@@ -38,8 +38,8 @@ const Search =({searchData, onSearch}) => {
       };
 
     return (
-        <div>
-            <input type="text" 
+        <div className="container">
+            <input type="text" className="input"
             placeholder="Search...." 
             value={searchTerm} 
             onChange={handleInputChange} 
