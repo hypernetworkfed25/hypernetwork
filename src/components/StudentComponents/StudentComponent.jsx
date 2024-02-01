@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./StudentComponent.css";
-import usersData from "../../data/Users.json"; // Make sure this path is correct
+import usersData from "../../data/users.json"; // Make sure this path is correct
 
 const StudentComponent = () => {
   const [expandedId, setExpandedId] = useState(null);
