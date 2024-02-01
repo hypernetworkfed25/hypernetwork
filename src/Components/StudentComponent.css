@@ -8,7 +8,7 @@
 .student-container {
   width: 100%;
   margin-top: 100px;
-  border: 2px solid salmon;
+  border: 2px solid rgb(0, 0, 0);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,18 +23,18 @@ p {
   cursor: pointer;
   margin-bottom: 10px;
   transition: all 0.2s ease;
-  color: salmon;
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .student-card:hover {
-  background-color: salmon;
+  background-color: rgba(0, 0, 0, 0.5);
   color: #fff;
   font-size: 20px;
 }
 
 /* Styles for the expanded card */
 .student-card.expanded {
-  background-color: salmon;
+  background-color: rgba(0, 0, 0, 0.5);
   color: #fff;
   font-size: 24px;
 }
