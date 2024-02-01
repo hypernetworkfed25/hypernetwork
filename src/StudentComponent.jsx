@@ -4,7 +4,9 @@ import usersData from "./data/Users.json"; // Make sure this path is correct
 
 const StudentComponent = () => {
   const [expandedId, setExpandedId] = useState(null);
-  const users = usersData.users; // Assuming your JSON structure has a 'users' array
+  let users = usersData.users; // Assuming your JSON structure has a 'users' array
+
+  users = users.sort((a, b) => a.firstName.localeCompare(b.firstName));
 
   const handleCardClick = (id) => {
     setExpandedId(expandedId === id ? null : id);
@@ -26,31 +28,33 @@ const StudentComponent = () => {
           </div>
           <div className="student-info">
             <div className="student-detail">
-              <b>Program: </b>
-              {user.program}
+              PROGRAM:
+              <b>{user.program}</b>
             </div>
             <div className="student-info-unexpanded">
               <div className="student-detail">
                 {" "}
-                <b>Portfolio: </b>
-                {user.portfolio}
+                PORTFOLIO:
+                <b>{user.portfolio}</b>
               </div>
               <div>
-                <b>Open for projects:</b> {user.availability}
+                Open for projects: <b>{user.availability}</b>
               </div>
             </div>
             {expandedId === user.id && (
               <div className="student-expanded-details">
                 <div className="student-hard-skills">
-                  <b>HardSkills:</b>
-                  {user.hardSkills.map((skill, index) => (
-                    <div key={index}>
-                      {skill.skill}: {skill.comment}
-                    </div>
-                  ))}
+                  HardSkills:
+                  <div className="hardSkills">
+                    {user.hardSkills.map((skill, index) => (
+                      <div key={index}>
+                        <b>{skill.skill}:</b> <p>{skill.comment}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
                 <div className="student-languages">
-                  <b>Language:</b> {user.languages.join(", ")}
+                  Language: <b>{user.languages.join(", ")}</b>
                 </div>
               </div>
             )}
