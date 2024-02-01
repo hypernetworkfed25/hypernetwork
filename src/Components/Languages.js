@@ -21,19 +21,18 @@ const Languages = ({ onSelectLanguage }) => {
 
   return (
     <div>
-      <h2>Choose Languages:</h2>
-      {languages.map(language => (
-        <label key={language.code}>
-          <input
-            type="checkbox"
-            value={language.name}
-            onChange={() => onSelectLanguage(language.name)}
-          />
-          {language.name}
-        </label>
+    <h2>Languages</h2>
+    <ul>
+      {languages.map((language) => (
+        <li key={language.code}>
+          {language.name} ({language.code})
+        </li>
       ))}
-    </div>
-  );
+    </ul>
+  </div>
+);
 };
+  
+
 
 export default Languages;
