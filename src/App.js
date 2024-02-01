@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import Search from "./Components/Search";
-import data from "./users.json";
-import SearchComponent from "./Components/SearchComponent/SearchComponent";
 import "./App.css";
+import SearchComponent from "./Components/SearchComponent/SearchComponent";
+import { ChakraProvider } from "@chakra-ui/react";
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
@@ -11,9 +10,13 @@ function App() {
     setSearchResults(results);
     setSearchResults(results);
   };
+  // Make the search bar position fixed
+  // Check scroll distance with framer motion
+  // Z index of the hero section is above the search component
+  // Fade out the whole hero section after a certain scroll distance
 
   return (
-    <div>
+    <ChakraProvider>
       <div>
         <h1>Hyper Network</h1>
         <Search searchData={data} onSearch={handleSearch} />
@@ -35,7 +38,9 @@ function App() {
             </div>
           ))}
         </div>
-
+      </div>
+      <div style={{ minHeight: "100vh" }}>
+        <h1 style={{ fontSize: "96px" }}>Hyper Network</h1>
         <p>
           Welcome to Hyper Network! Our student database is designed to be your
           go-to resource for networking and skill-sharing. Whether you're on the
@@ -45,10 +50,10 @@ function App() {
           a specific skill right away, keep checking back—it might just be a
           matter of time until the perfect collaborator joins the community.
         </p>
-        <p></p>
       </div>
+
       <SearchComponent />
-    </div>
+    </ChakraProvider>
   );
 }
 

@@ -5,36 +5,38 @@ body {
   align-items: center;
 }
 
-.wrap {
-  display: grid;
-  grid-template-columns: 250px 1fr; /* Set the first column to a fixed width */
-  grid-template-rows: repeat(2, 1fr);
-  grid-template-areas:
-    "top-left top-right"
-    "bottom-left bottom-right";
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-  position: relative; /* Set position to establish a stacking context */
-  z-index: 1; /* Set a z-index for stacking */
+.search-container {
+  position: sticky;
+  top: 0;
   background-color: white;
 }
 
-.container {
+.search-bar {
   display: flex;
-  padding: 0px;
-  align-items: flex-start;
-  gap: 20px;
+  flex-direction: column;
+  max-width: 80vw;
+  margin: 0 auto;
 }
 
-.input {
+.search-field {
   outline: 0;
-  border-width: 0 0 0px;
-  width: 400px;
+  width: 100%;
   font-size: 2rem;
   align-items: flex-end;
   position: relative; /* Set position to enable z-index */
   z-index: 2;
   overflow: visible;
+  border-bottom: 2px solid black;
+}
+
+.filter-container {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  justify-content: end;
+  gap: 20px;
 }
 
 .top-left {

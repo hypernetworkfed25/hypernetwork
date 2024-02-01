@@ -1,196 +1,249 @@
-import React, { useState, useEffect } from 'react';
-import userData from '../../data/users.json';
-import './SearchComponent.css';
-import Select, { components } from 'react-select'; // Import components from react-select
+import React, { useState, useEffect } from "react";
+import userData from "../../data/users.json";
+import "./SearchComponent.css";
+import {
+  Button,
+  Menu,
+  MenuButton,
+  MenuItemOption,
+  MenuList,
+  MenuOptionGroup,
+  Switch,
+} from "@chakra-ui/react";
 
-const usersData = userData.users;
+const users = userData.users;
 
-// Function to extract and join hard skills
-const extractHardSkills = (hardSkills) => {
-  if (Array.isArray(hardSkills)) {
-    return hardSkills.map(skillObj => {
-      if (typeof skillObj === 'object') {
-        return skillObj.skill || '';
-      } else if (typeof skillObj === 'string') {
-        return skillObj;
-      } else {
-        return '';
-      }
-    }).join(', ');
-  } else if (typeof hardSkills === 'object') {
-    return hardSkills.skill || '';
-  } else {
-    return '';
-  }
-};
+const uniqueHardSkills = Array.from(
+  new Set(
+    users.flatMap((user) => user.hardSkills.map((hardSkill) => hardSkill.skill))
+  )
+);
 
-
+const uniqueLanguages = Array.from(
+  new Set(users.flatMap((user) => user.languages))
+);
 
 const SearchComponent = () => {
-  const [searchText, setSearchText] = useState('');
-  const [selectedProgram, setSelectedProgram] = useState('');
+  const [searchText, setSearchText] = useState("");
+  const [selectedProgram, setSelectedProgram] = useState([]);
   const [selectedLanguages, setSelectedLanguages] = useState([]);
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [showOnlyWithPortfolio, setShowOnlyWithPortfolio] = useState(false);
   const [filteredUsers, setFilteredUsers] = useState([]);
-  const [selectedHardSkills, setSelectedHardSkills] = useState([]);
-
-
-  
-  const handleHardSkillsChange = (selectedOptions) => {
-    setSelectedHardSkills(selectedOptions);
-  };
-
-  const CustomMultiValueLabel = (props) => (
-    <components.MultiValueLabel {...props}>
-      {props.data.label}
-    </components.MultiValueLabel>
-  );
-
 
   useEffect(() => {
     // Filter users based on the search criteria
-    const filtered = usersData.filter(user => {
-      const matchSearchText = Object.values(user).some(value =>
-        value.toString().toLowerCase().includes(searchText.toLowerCase())
+    const filtered = users.filter((user) => {
+      const searchTerms = searchText.toLowerCase().split(" ");
+
+      const matchSearchText = searchTerms.every(
+        (term) =>
+          Object.values(user).some((value) =>
+            value.toString().toLowerCase().includes(term)
+          ) ||
+          Object.values(user.contact).some((value) =>
+            value.toString().toLowerCase().includes(term)
+          ) ||
+          user.hardSkills.some(
+            (skill) =>
+              skill.skill.toLowerCase().includes(term) ||
+              skill.comment.toLowerCase().includes(term)
+          )
       );
 
-      const matchProgram = selectedProgram ? user.program === selectedProgram : true;
+      const matchProgram =
+        selectedProgram.length === 0 || selectedProgram.includes(user.program);
 
       const matchLanguages = selectedLanguages.length
-        ? selectedLanguages.every(lang => user.languages.includes(lang))
+        ? selectedLanguages.some((language) =>
+            user.languages.some((userLanguage) => userLanguage === language)
+          )
         : true;
 
       const matchSkills = selectedSkills.length
-        ? selectedSkills.every(skill =>
-          user.hardSkills.some(userSkill => userSkill.skill === skill)
-        )
-        : true;
-
-      const matchHardSkills = selectedHardSkills.length
-        ? selectedHardSkills.every(skill =>
-          user.hardSkills.some(userSkill => userSkill.skill === skill)
-        )
+        ? selectedSkills.some((skill) =>
+            user.hardSkills.some((userSkill) => userSkill.skill === skill)
+          )
         : true;
 
       const matchPortfolio = showOnlyWithPortfolio ? user.portfolio : true;
 
-      return matchSearchText && matchProgram && matchLanguages && matchSkills && matchHardSkills && matchPortfolio;
+      return (
+        matchSearchText &&
+        matchProgram &&
+        matchLanguages &&
+        matchSkills &&
+        matchPortfolio
+      );
     });
 
     setFilteredUsers(filtered);
-  }, [searchText, selectedProgram, selectedLanguages, selectedSkills, selectedHardSkills, showOnlyWithPortfolio]);
+  }, [
+    searchText,
+    selectedProgram,
+    selectedLanguages,
+    selectedSkills,
+    showOnlyWithPortfolio,
+  ]);
 
   return (
-    <>
-      <div className="wrap">
-        <div className="top-left">
-          {/* Text field */}
+    <div
+      style={{
+        position: "relative",
+      }}
+    >
+      {/* Search  */}
+      <div className="search-container">
+        <div className="search-bar">
+          {/* Search term input */}
           <input
             type="text"
             placeholder="Search..."
             value={searchText}
-            onChange={e => setSearchText(e.target.value)}
-            className="input"
+            onChange={(e) => setSearchText(e.target.value)}
+            className="search-field"
             autoFocus
           />
-        </div>
-        <div className="bottom-left"></div>
-        <div className="container bottom-right">
-          {/* TEST dropdown for hard skills */}
-          <Select
-        isMulti
-        options={usersData.flatMap(user => user.hardSkills).map(skill => ({
-          value: skill.skill,
-          label: skill.skill
-        }))}
-        value={selectedHardSkills}
-        onChange={handleHardSkillsChange}
-        components={{
-          MultiValueLabel: CustomMultiValueLabel,
-        }}
-        placeholder="Select hard skills"
-        hideSelectedOptions={true}
-        closeMenuOnSelect={false}
-        styles={{
-          multiValue: (styles) => ({
-            ...styles,
-            backgroundColor: '#D3D3D3', // Set the background color for selected options
-          }),
-          multiValueLabel: (styles) => ({
-            ...styles,
-            color: '#000000', // Set the text color for selected options
-          }),
-        }}
-      />
 
-          {/* Dropdown menus */}
-          <select value={selectedProgram} onChange={e => setSelectedProgram(e.target.value)} className="no-border">
-            <option value="">Select Program</option>
-            {[...new Set(usersData.map(user => user.program))].map(program => (
-              <option key={program} value={program}>
-                {program}
-              </option>
-            ))}
-          </select>
+          {/* Search filters */}
+          <div className="filter-container">
+            {/* Programs multiple select */}
+            <Menu closeOnSelect={false} minWidth="240px">
+              <MenuButton as={Button} colorScheme="gray" minWidth="128px">
+                Programs
+              </MenuButton>
+              <MenuList minWidth="240px">
+                <MenuOptionGroup type="checkbox">
+                  {[...new Set(users.map((user) => user.program))].map(
+                    (program, i) => (
+                      <MenuItemOption
+                        key={i}
+                        value={program}
+                        onClick={() => {
+                          // Check if the program is already selected
+                          const isProgramSelected =
+                            selectedProgram.includes(program);
 
-          <select
-            multiple
-            value={selectedLanguages}
-            onChange={e => setSelectedLanguages(Array.from(e.target.selectedOptions, option => option.value))}
-            className="no-border"
-          >
-            <option value="">Select Languages</option>
-            {[...new Set(usersData.flatMap(user => user.languages))].map(language => (
-              <option key={language} value={language}>
-                {language}
-              </option>
-            ))}
-          </select>
+                          // If selected, remove it; otherwise, add it
+                          setSelectedProgram((prevSelectedProgram) =>
+                            isProgramSelected
+                              ? prevSelectedProgram.filter(
+                                  (selected) => selected !== program
+                                )
+                              : [...prevSelectedProgram, program]
+                          );
+                        }}
+                      >
+                        {program}
+                      </MenuItemOption>
+                    )
+                  )}
+                </MenuOptionGroup>
+              </MenuList>
+            </Menu>
 
-          <select
-            multiple
-            value={selectedSkills}
-            onChange={e => setSelectedSkills(Array.from(e.target.selectedOptions, option => option.value))}
-          >
-            <option value="">Select Skills</option>
-            {[...new Set(usersData.flatMap(user => user.hardSkills.map(skill => skill.skill)))].map(
-              skill => (
-                <option key={skill} value={skill}>
-                  {skill}
-                </option>
-              )
-            )}
-          </select>
+            {/* Languages multiple select */}
+            <Menu closeOnSelect={false} minWidth="240px">
+              <MenuButton as={Button} colorScheme="gray" minWidth="128px">
+                Languages
+              </MenuButton>
+              <MenuList minWidth="240px">
+                <MenuOptionGroup type="checkbox">
+                  {uniqueLanguages.map((language, i) => (
+                    <MenuItemOption
+                      key={i}
+                      value={language}
+                      onClick={() => {
+                        // Check if the program is already selected
+                        const isLanguageSelected =
+                          selectedLanguages.includes(language);
 
-          {/* Checkbox for Portfolio */}
-          <label>
-            <input
-              type="checkbox"
-              checked={showOnlyWithPortfolio}
-              onChange={() => setShowOnlyWithPortfolio(!showOnlyWithPortfolio)}
-            />
-            Show only users with Portfolio
-          </label>
+                        // If selected, remove it; otherwise, add it
+                        setSelectedLanguages((prevSelectedLanguage) =>
+                          isLanguageSelected
+                            ? prevSelectedLanguage.filter(
+                                (selected) => selected !== language
+                              )
+                            : [...prevSelectedLanguage, language]
+                        );
+                      }}
+                    >
+                      {language}
+                    </MenuItemOption>
+                  ))}
+                </MenuOptionGroup>
+              </MenuList>
+            </Menu>
+
+            {/* Skills multiple select */}
+            <Menu closeOnSelect={false} minWidth="240px">
+              <MenuButton as={Button} colorScheme="gray" minWidth="128px">
+                Skills
+              </MenuButton>
+              <MenuList minWidth="240px">
+                <MenuOptionGroup type="checkbox">
+                  {uniqueHardSkills.map((skill, i) => (
+                    <MenuItemOption
+                      key={i}
+                      value={skill}
+                      onClick={() => {
+                        // Check if the program is already selected
+                        const isSkillSelected = selectedSkills.includes(skill);
+
+                        // If selected, remove it; otherwise, add it
+                        setSelectedSkills((prevSelectedSkills) =>
+                          isSkillSelected
+                            ? prevSelectedSkills.filter(
+                                (selected) => selected !== skill
+                              )
+                            : [...prevSelectedSkills, skill]
+                        );
+                      }}
+                    >
+                      {skill}
+                    </MenuItemOption>
+                  ))}
+                </MenuOptionGroup>
+              </MenuList>
+            </Menu>
+
+            {/* Checkbox for Portfolio */}
+            <label>
+              <Switch
+                type="checkbox"
+                checked={showOnlyWithPortfolio}
+                onChange={() =>
+                  setShowOnlyWithPortfolio(!showOnlyWithPortfolio)
+                }
+                size="md"
+              />{" "}
+              Show only users with Portfolio
+            </label>
+          </div>
         </div>
       </div>
-      {/* Display filtered users */}
-      {filteredUsers.map(user => (
+
+      {/* Results of filtered users */}
+      {filteredUsers.map((user) => (
         <div key={user.id}>
-          <div>{user.firstName} {user.lastName}</div>
+          <div>
+            {user.firstName} {user.lastName}
+          </div>
           <div>
             {/* Display user categories */}
             {Object.entries(user)
-              .filter(([key]) => key !== 'hyperEmail' && key !== 'confirmHyperEmail')
+              .filter(
+                ([key]) => key !== "hyperEmail" && key !== "confirmHyperEmail"
+              )
               .map(([key, value]) => (
                 <div key={key}>
-                  <span>{key}:</span> {Array.isArray(value) ? value.join(', ') : (typeof value === 'object' ? extractHardSkills(value) : String(value))}
+                  <span>{key}:</span> <pre>{JSON.stringify(value, 0, 2)}</pre>
                 </div>
               ))}
           </div>
         </div>
       ))}
-    </>
+    </div>
   );
 };
 
