@@ -2,7 +2,7 @@ import "./App.css";
 import React from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 
-import SearchComponent from "./Components/SearchComponent/SearchComponent";
+import SearchComponent from "./components/SearchComponent/SearchComponent";
 
 function App() {
   return (
