@@ -28,7 +28,7 @@ const StudentComponent = () => {
           </div>
           <div className="student-info">
             <div className="student-detail">
-              PROGRAM:
+              PROGRAM::
               <b>{user.program}</b>
             </div>
             <div className="student-info-unexpanded">
