@@ -10,8 +10,12 @@ import {
   MenuOptionGroup,
   Switch,
 } from "@chakra-ui/react";
+import { useDebounceValue } from "usehooks-ts";
+import useFetch from "../../hooks/useFetch";
 
 const users = userData.users;
+const GET_STUDENTS_API =
+  "https://hypernetworkserver.jinjingwu.workers.dev/api/hypernetwork";
 
 const uniqueHardSkills = Array.from(
   new Set(
@@ -29,7 +33,38 @@ const SearchComponent = () => {
   const [selectedLanguages, setSelectedLanguages] = useState([]);
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [showOnlyWithPortfolio, setShowOnlyWithPortfolio] = useState(false);
-  const [filteredUsers, setFilteredUsers] = useState([]);
+  const [, setFilteredUsers] = useState([]);
+
+  const [searchTerm, setSearchTerm] = useState({
+    name: "",
+    programs: [],
+    languages: [],
+    hardSkills: [],
+  });
+
+  const [debouncedSearchTerm] = useDebounceValue(searchTerm, 500);
+  const {
+    data: students,
+    loading,
+    error,
+  } = useFetch(GET_STUDENTS_API, debouncedSearchTerm);
+
+  const searchTermHandler = ({
+    name = "",
+    programs,
+    languages,
+    hardSkills,
+    hasPortfolio,
+  } = {}) => {
+    setSearchTerm((prevSearchTerm) => ({
+      ...prevSearchTerm,
+      ...{ name },
+      ...(programs && { programs }),
+      ...(languages && { languages }),
+      ...(hardSkills && { hardSkills }),
+      ...{ hasPortfolio },
+    }));
+  };
 
   useEffect(() => {
     // Filter users based on the search criteria
@@ -100,7 +135,11 @@ const SearchComponent = () => {
             type="text"
             placeholder="Search..."
             value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
+            onChange={(e) => {
+              const { value } = e.target;
+              setSearchText(value);
+              searchTermHandler({ name: value });
+            }}
             className="search-field"
             autoFocus
           />
@@ -132,6 +171,14 @@ const SearchComponent = () => {
                                 )
                               : [...prevSelectedProgram, program]
                           );
+
+                          searchTermHandler({
+                            programs: isProgramSelected
+                              ? [...searchTerm.programs].filter(
+                                  (selected) => selected !== program
+                                )
+                              : [...searchTerm.programs, program],
+                          });
                         }}
                       >
                         {program}
@@ -166,6 +213,14 @@ const SearchComponent = () => {
                               )
                             : [...prevSelectedLanguage, language]
                         );
+
+                        searchTermHandler({
+                          languages: isLanguageSelected
+                            ? [...searchTerm.languages].filter(
+                                (selected) => selected !== language
+                              )
+                            : [...searchTerm.languages, language],
+                        });
                       }}
                     >
                       {language}
@@ -198,6 +253,13 @@ const SearchComponent = () => {
                               )
                             : [...prevSelectedSkills, skill]
                         );
+                        searchTermHandler({
+                          hardSkills: isSkillSelected
+                            ? [...searchTerm.hardSkills].filter(
+                                (selected) => selected !== skill
+                              )
+                            : [...searchTerm.hardSkills, skill],
+                        });
                       }}
                     >
                       {skill}
@@ -212,9 +274,11 @@ const SearchComponent = () => {
               <Switch
                 type="checkbox"
                 checked={showOnlyWithPortfolio}
-                onChange={() =>
-                  setShowOnlyWithPortfolio(!showOnlyWithPortfolio)
-                }
+                onChange={() => {
+                  const state = !showOnlyWithPortfolio;
+                  setShowOnlyWithPortfolio(state);
+                  searchTermHandler({ hasPortfolio: state });
+                }}
                 size="md"
               />{" "}
               Show only users with Portfolio
@@ -224,25 +288,29 @@ const SearchComponent = () => {
       </div>
 
       {/* Results of filtered users */}
-      {filteredUsers.map((user) => (
-        <div key={user.id}>
-          <div>
-            {user.firstName} {user.lastName}
+      {loading && <div>Loading...</div>}
+      {error && <div>Some errors happing, please wait a while and retry.</div>}
+      {!error &&
+        !loading &&
+        students?.map((user) => (
+          <div key={user.id}>
+            <div>
+              {user.firstName} {user.lastName}
+            </div>
+            <div>
+              {/* Display user categories */}
+              {Object.entries(user)
+                .filter(
+                  ([key]) => key !== "hyperEmail" && key !== "confirmHyperEmail"
+                )
+                .map(([key, value]) => (
+                  <div key={key}>
+                    <span>{key}:</span> <pre>{JSON.stringify(value, 0, 2)}</pre>
+                  </div>
+                ))}
+            </div>
           </div>
-          <div>
-            {/* Display user categories */}
-            {Object.entries(user)
-              .filter(
-                ([key]) => key !== "hyperEmail" && key !== "confirmHyperEmail"
-              )
-              .map(([key, value]) => (
-                <div key={key}>
-                  <span>{key}:</span> <pre>{JSON.stringify(value, 0, 2)}</pre>
-                </div>
-              ))}
-          </div>
-        </div>
-      ))}
+        ))}
     </div>
   );
 };
