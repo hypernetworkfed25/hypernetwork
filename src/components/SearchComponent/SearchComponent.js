@@ -54,6 +54,7 @@ const SearchComponent = () => {
     programs,
     languages,
     hardSkills,
+    hasPortfolio,
   } = {}) => {
     setSearchTerm((prevSearchTerm) => ({
       ...prevSearchTerm,
@@ -61,6 +62,7 @@ const SearchComponent = () => {
       ...(programs && { programs }),
       ...(languages && { languages }),
       ...(hardSkills && { hardSkills }),
+      ...{ hasPortfolio },
     }));
   };
 
@@ -272,9 +274,11 @@ const SearchComponent = () => {
               <Switch
                 type="checkbox"
                 checked={showOnlyWithPortfolio}
-                onChange={() =>
-                  setShowOnlyWithPortfolio(!showOnlyWithPortfolio)
-                }
+                onChange={() => {
+                  const state = !showOnlyWithPortfolio;
+                  setShowOnlyWithPortfolio(state);
+                  searchTermHandler({ hasPortfolio: state });
+                }}
                 size="md"
               />{" "}
               Show only users with Portfolio
