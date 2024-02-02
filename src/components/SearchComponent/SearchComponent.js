@@ -51,16 +51,16 @@ const SearchComponent = () => {
 
   const searchTermHandler = ({
     name = "",
-    programs = [],
-    languages = [],
-    hardSkills = [],
+    programs,
+    languages,
+    hardSkills,
   } = {}) => {
     setSearchTerm((prevSearchTerm) => ({
       ...prevSearchTerm,
       ...{ name },
-      ...{ programs },
-      ...{ languages },
-      ...{ hardSkills },
+      ...(programs && { programs }),
+      ...(languages && { languages }),
+      ...(hardSkills && { hardSkills }),
     }));
   };
 
