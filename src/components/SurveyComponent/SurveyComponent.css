@@ -2,6 +2,7 @@
 form {
   padding: 0 20em;
 }
+
 .box {
   margin-top: 50px;
   display: grid;
@@ -11,18 +12,21 @@ form {
 .flex-container {
   margin-bottom: 3em;
 }
+
 h2 {
-  padding-left: 300px;
   font-size: 20px;
 }
+
 h1 {
   font-size: 100px;
 }
+
 /* Style for each line of fields using Flexbox */
 
 /* Style for each box within the Flex container */
 .flex-box {
-  margin-right: 50px; /* Adjust spacing between boxes */
+  margin-right: 50px;
+  /* Adjust spacing between boxes */
 }
 
 /* Style for the last box in each line to remove the right margin */
