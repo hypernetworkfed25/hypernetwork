@@ -7,11 +7,7 @@
       "hyperEmail": "oliver.redondo@hyperisland.se",
       "confirmHyperEmail": "oliver.redondo@hyperisland.se",
       "program": "FED25",
-      "languages": [
-        "English",
-        "Spanish",
-        "Basque"
-      ],
+      "languages": ["English", "Spanish", "Basque"],
       "hardSkills": [
         {
           "skill": "Video editing",
@@ -44,10 +40,7 @@
       "hyperEmail": "hifza.batool@hyperisland.se",
       "confirmHyperEmail": "hifza.batool@hyperisland.se",
       "program": "Data Analyst",
-      "languages": [
-        "English",
-        "Urdu"
-      ],
+      "languages": ["English", "Urdu"],
       "hardSkills": [
         {
           "skill": "HTML",
@@ -80,10 +73,7 @@
       "hyperEmail": "ahmed.sharif@hyperisland.se",
       "confirmHyperEmail": "ahmed.sharif@hyperisland.se",
       "program": "Design Lead",
-      "languages": [
-        "English",
-        "Swedish"
-      ],
+      "languages": ["English", "Swedish"],
       "hardSkills": [
         {
           "skill": "React",
@@ -116,10 +106,7 @@
       "hyperEmail": "jinjing.wu@hyperisland.se",
       "confirmHyperEmail": "jinjing.wu@hyperisland.se",
       "program": "Digital Creative",
-      "languages": [
-        "English",
-        "Chinese"
-      ],
+      "languages": ["English", "Chinese"],
       "hardSkills": [
         {
           "skill": "React",
