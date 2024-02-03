@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import "./StudentComponent.css";
-import usersData from "../../data/users.json"; // Make sure this path is correct
 
-const StudentComponent = () => {
+//import usersData from "../../data/users.json"; // Make sure this path is correct
+
+const StudentComponent = ({ users }) => {
   const [expandedId, setExpandedId] = useState(null);
-  let users = usersData.users; // Assuming your JSON structure has a 'users' array
 
-  users = users.sort((a, b) => a.firstName.localeCompare(b.firstName));
+  const sortedUsers = users.sort((a, b) =>
+    a.firstName.localeCompare(b.firstName)
+  );
 
   const handleCardClick = (id) => {
     setExpandedId(expandedId === id ? null : id);
@@ -14,7 +16,7 @@ const StudentComponent = () => {
 
   return (
     <div className="student-container">
-      {users.map((user) => (
+      {sortedUsers.map((user) => (
         <div
           key={user.id}
           className={`student-card ${expandedId === user.id ? "expanded" : ""}`}
@@ -37,7 +39,7 @@ const StudentComponent = () => {
                 PORTFOLIO:
                 <b>{user.portfolio}</b>
               </div>
-              <div>
+              <div className="project">
                 Open for projects: <b>{user.availability}</b>
               </div>
             </div>
@@ -47,8 +49,13 @@ const StudentComponent = () => {
                   HardSkills:
                   <div className="hardSkills">
                     {user.hardSkills.map((skill, index) => (
-                      <div key={index}>
-                        <b>{skill.skill}:</b> <p>{skill.comment}</p>
+                      <div key={index} className="skills">
+                        <div className="skill-line">
+                          <b>{skill.skill}:</b>
+                        </div>{" "}
+                        <div className="comment">
+                          <p>{skill.comment}</p>
+                        </div>
                       </div>
                     ))}
                   </div>

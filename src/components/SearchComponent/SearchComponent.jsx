@@ -13,6 +13,7 @@ import {
 import { useDebounceValue } from "usehooks-ts";
 import useFetch from "../../hooks/useFetch";
 
+import StudentComponent from "../StudentComponents/StudentComponent";
 const users = userData.users;
 const GET_STUDENTS_API =
   "https://hypernetworkserver.jinjingwu.workers.dev/api/hypernetwork";
@@ -141,7 +142,6 @@ const SearchComponent = () => {
               searchTermHandler({ name: value });
             }}
             className="search-field"
-            // autoFocus
           />
 
           {/* Search filters */}
@@ -290,27 +290,7 @@ const SearchComponent = () => {
       {/* Results of filtered users */}
       {loading && <div>Loading...</div>}
       {error && <div>Some errors happing, please wait a while and retry.</div>}
-      {!error &&
-        !loading &&
-        students?.map((user) => (
-          <div key={user.id}>
-            <div>
-              {user.firstName} {user.lastName}
-            </div>
-            <div>
-              {/* Display user categories */}
-              {Object.entries(user)
-                .filter(
-                  ([key]) => key !== "hyperEmail" && key !== "confirmHyperEmail"
-                )
-                .map(([key, value]) => (
-                  <div key={key}>
-                    <span>{key}:</span> <pre>{JSON.stringify(value, 0, 2)}</pre>
-                  </div>
-                ))}
-            </div>
-          </div>
-        ))}
+      {!error && !loading && <StudentComponent users={students} />}
     </div>
   );
 };
