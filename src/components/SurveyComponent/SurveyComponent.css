@@ -1,0 +1,26 @@
+/* Style for the overall form */
+form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Style for each line of fields using Flexbox */
+.flex-container {
+  display: flex;
+}
+
+/* Style for each box within the Flex container */
+.flex-box {
+  flex: 1;
+  margin-right: 50px; /* Adjust spacing between boxes */
+}
+
+/* Style for the last box in each line to remove the right margin */
+.flex-box:last-child {
+  margin-right: 0;
+}
+
+/* Additional styles for FormControl components if needed */
+.form-control {
+  margin-bottom: 60px;
+}

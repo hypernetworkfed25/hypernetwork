@@ -141,7 +141,7 @@ const SearchComponent = () => {
               searchTermHandler({ name: value });
             }}
             className="search-field"
-            autoFocus
+            // autoFocus
           />
 
           {/* Search filters */}
