@@ -11,6 +11,7 @@ import {
   Switch,
 } from "@chakra-ui/react";
 
+import StudentComponent from "../StudentComponents/StudentComponent";
 const users = userData.users;
 
 const uniqueHardSkills = Array.from(
@@ -102,7 +103,6 @@ const SearchComponent = () => {
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
             className="search-field"
-            autoFocus
           />
 
           {/* Search filters */}
@@ -224,25 +224,7 @@ const SearchComponent = () => {
       </div>
 
       {/* Results of filtered users */}
-      {filteredUsers.map((user) => (
-        <div key={user.id}>
-          <div>
-            {user.firstName} {user.lastName}
-          </div>
-          <div>
-            {/* Display user categories */}
-            {Object.entries(user)
-              .filter(
-                ([key]) => key !== "hyperEmail" && key !== "confirmHyperEmail"
-              )
-              .map(([key, value]) => (
-                <div key={key}>
-                  <span>{key}:</span> <pre>{JSON.stringify(value, 0, 2)}</pre>
-                </div>
-              ))}
-          </div>
-        </div>
-      ))}
+      <StudentComponent users={filteredUsers} />
     </div>
   );
 };
