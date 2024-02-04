@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   FormControl,
   FormLabel,
@@ -28,45 +28,65 @@ const SurveyComponent = () => {
   const program = useRef();
   const availability = useRef();
   const portfolio = useRef();
+  const contactOption = useRef();
+  const contactValue = useRef();
+
+  const [isMatchingEmail, setIsMatchingEmail] = useState(true);
+  const [isHyperIsland, setIsHyperIsland] = useState(true);
 
   function handleOnSubmit(e) {
     e.preventDefault();
 
     if (email.current.value === emailConfirm.current.value) {
-      const testUser = {
-        id: 1,
-        firstName: firstName.current.value,
-        lastName: lastName.current.value,
-        hyperEmail: email.current.value,
-        confirmHyperEmail: emailConfirm.current.value,
-        program: program.current.value,
-        languages: ["English", "Spanish", "Basque"],
-        hardSkills: [
-          {
-            skill: "Video editing",
-            comment: "Ask me -almost- anything about Premiere",
-          },
-          {
-            skill: "Javascript",
-            comment: "I like designing portfolios",
-          },
-          {
-            skill: "React",
-            comment: "I can build basic things",
-          },
-        ],
-        availability: availability.current.value,
-        portfolio: portfolio.current.value,
-        contact: {
-          email: "oliver@example.com",
-          linkedin: "https://www.linkedin.com/in/oliver",
-          slack: {
-            checked: true,
-            memberId: "U05MNJW0C78",
-          },
+      setIsMatchingEmail(true);
+    } else {
+      return setIsMatchingEmail(false);
+    }
+
+    if (
+      email.current.value.includes("@hyperisland.se") &&
+      emailConfirm.current.value.includes("@hyperisland.se")
+    ) {
+      setIsHyperIsland(true);
+    } else {
+      return setIsHyperIsland(false);
+    }
+
+    const testUser = {
+      id: 1,
+      firstName: firstName.current.value,
+      lastName: lastName.current.value,
+      hyperEmail: email.current.value,
+      confirmHyperEmail: emailConfirm.current.value,
+      program: program.current.value,
+      languages: ["English", "Spanish", "Basque"],
+      hardSkills: [
+        {
+          skill: "Video editing",
+          comment: "Ask me -almost- anything about Premiere",
         },
-      };
-    } else console.log();
+        {
+          skill: "Javascript",
+          comment: "I like designing portfolios",
+        },
+        {
+          skill: "React",
+          comment: "I can build basic things",
+        },
+      ],
+      availability: availability.current.value,
+      portfolio: portfolio.current.value,
+      contact: {
+        email: "oliver@example.com",
+        linkedin: "https://www.linkedin.com/in/oliver",
+        slack: {
+          checked: true,
+          memberId: "U05MNJW0C78",
+        },
+      },
+    };
+
+    console.log("SUCCESS! THE TEST USER IS", testUser);
   }
 
   return (
@@ -101,7 +121,11 @@ const SurveyComponent = () => {
             </FormControl>
           </div>
           <div className="flex-box">
-            <FormControl className="form-control" isRequired>
+            <FormControl
+              className="form-control"
+              isRequired
+              isInvalid={!isMatchingEmail || !isHyperIsland}
+            >
               <FormLabel>Confirm school e-mail</FormLabel>
               <Input
                 ref={emailConfirm}
@@ -109,9 +133,13 @@ const SurveyComponent = () => {
                 placeholder="Enter your Hyper Island e-mail"
               />
               {/* FormErrorMessage for matching e-mails */}
-              <FormErrorMessage>E-mails don't match</FormErrorMessage>
+              {!isMatchingEmail && (
+                <FormErrorMessage>E-mails don't match</FormErrorMessage>
+              )}
               {/* FormErrorMessage for invalid e-mail domain */}
-              <FormErrorMessage>Invalid Hyper Island e-mail</FormErrorMessage>
+              {!isHyperIsland && (
+                <FormErrorMessage>Invalid Hyper Island e-mail</FormErrorMessage>
+              )}
             </FormControl>
           </div>
         </div>
@@ -305,7 +333,38 @@ const SurveyComponent = () => {
             <div className="flex-container">
               <div className="skill-column">
                 <FormControl>
-                  <Select placeholder="Choose one" isRequired>
+                  <Select
+                    placeholder="Choose one"
+                    isRequired
+                    onChange={(e) => {
+                      switch (e.target.value) {
+                        case "E-mail":
+                          contactValue.current.placeholder = "E-mail address";
+                          contactValue.current.value = email.current.value;
+                          contactValue.current.disabled = true;
+                          break;
+
+                        case "LinkedIn":
+                          contactValue.current.placeholder =
+                            "LinkedIn profile url";
+                          contactValue.current.value = "";
+                          contactValue.current.disabled = false;
+                          break;
+
+                        case "Slack":
+                          contactValue.current.placeholder = "Slack username";
+                          contactValue.current.value = "";
+                          contactValue.current.disabled = false;
+                          break;
+
+                        default:
+                          contactValue.current.placeholder = "Write something";
+                          contactValue.current.value = "";
+                          contactValue.current.disabled = true;
+                      }
+                    }}
+                    ref={contactOption}
+                  >
                     {["E-mail", "LinkedIn", "Slack"].map((contact) => (
                       <option key={contact} value={contact}>
                         {contact}
@@ -318,11 +377,13 @@ const SurveyComponent = () => {
                 <FormControl>
                   <Input
                     maxLength={50}
-                    placeholder="You can write a comment about this skill"
+                    placeholder="Write something"
                     onChange={(e) => {
                       const charactersLeft = 50 - e.target.value.length;
                       console.log(`Characters left: ${charactersLeft}`);
                     }}
+                    ref={contactValue}
+                    disabled
                   />
                 </FormControl>
               </div>
