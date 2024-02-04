@@ -22,44 +22,51 @@ import "./SurveyComponent.css";
 
 const SurveyComponent = () => {
   const firstName = useRef();
+  const lastName = useRef();
+  const email = useRef();
+  const emailConfirm = useRef();
+  const program = useRef();
+  const availability = useRef();
+  const portfolio = useRef();
 
   function handleOnSubmit(e) {
     e.preventDefault();
 
-    const testUser = {
-      id: 1,
-      firstName: firstName.current.value,
-      lastName: "Redondo",
-      hyperEmail: "oliver.redondo@hyperisland.se",
-      confirmHyperEmail: "oliver.redondo@hyperisland.se",
-      program: "FED25",
-      languages: ["English", "Spanish", "Basque"],
-      hardSkills: [
-        {
-          skill: "Video editing",
-          comment: "Ask me -almost- anything about Premiere",
+    if (email.current.value === emailConfirm.current.value) {
+      const testUser = {
+        id: 1,
+        firstName: firstName.current.value,
+        lastName: lastName.current.value,
+        hyperEmail: email.current.value,
+        confirmHyperEmail: emailConfirm.current.value,
+        program: program.current.value,
+        languages: ["English", "Spanish", "Basque"],
+        hardSkills: [
+          {
+            skill: "Video editing",
+            comment: "Ask me -almost- anything about Premiere",
+          },
+          {
+            skill: "Javascript",
+            comment: "I like designing portfolios",
+          },
+          {
+            skill: "React",
+            comment: "I can build basic things",
+          },
+        ],
+        availability: availability.current.value,
+        portfolio: portfolio.current.value,
+        contact: {
+          email: "oliver@example.com",
+          linkedin: "https://www.linkedin.com/in/oliver",
+          slack: {
+            checked: true,
+            memberId: "U05MNJW0C78",
+          },
         },
-        {
-          skill: "Javascript",
-          comment: "I like designing portfolios",
-        },
-        {
-          skill: "React",
-          comment: "I can build basic things",
-        },
-      ],
-      availability: "Yes",
-      portfolio: "https://www.oliver.com",
-      contact: {
-        email: "oliver@example.com",
-        linkedin: "https://www.linkedin.com/in/oliver",
-        slack: {
-          checked: true,
-          memberId: "U05MNJW0C78",
-        },
-      },
-    };
-    console.log(testUser);
+      };
+    } else console.log();
   }
 
   return (
@@ -76,7 +83,7 @@ const SurveyComponent = () => {
           <div className="flex-box">
             <FormControl className="form-control" isRequired>
               <FormLabel>Last Name</FormLabel>
-              <Input placeholder="Enter your last name" />
+              <Input ref={lastName} placeholder="Enter your last name" />
             </FormControl>
           </div>
         </div>
@@ -87,6 +94,7 @@ const SurveyComponent = () => {
             <FormControl className="form-control" isRequired>
               <FormLabel>School e-mail</FormLabel>
               <Input
+                ref={email}
                 type="email"
                 placeholder="Enter your Hyper Island e-mail"
               />
@@ -96,6 +104,7 @@ const SurveyComponent = () => {
             <FormControl className="form-control" isRequired>
               <FormLabel>Confirm school e-mail</FormLabel>
               <Input
+                ref={emailConfirm}
                 type="email"
                 placeholder="Enter your Hyper Island e-mail"
               />
@@ -112,7 +121,7 @@ const SurveyComponent = () => {
           <div className="flex-box">
             <FormControl className="form-control" isRequired>
               <FormLabel>Which program do you study?</FormLabel>
-              <Select placeholder="Pick your program">
+              <Select ref={program} placeholder="Pick your program">
                 {[
                   "AI Business Consultant",
                   "Content Developer",
@@ -255,7 +264,11 @@ const SurveyComponent = () => {
           {/* Fifth row */}
           <div className="flex-container">
             <div className="flex-box">
-              <FormControl className="form-control" isRequired>
+              <FormControl
+                ref={availability}
+                className="form-control"
+                isRequired
+              >
                 <FormLabel>
                   Are you available to collaborate with other students?
                 </FormLabel>
@@ -279,10 +292,43 @@ const SurveyComponent = () => {
                   Do you have a portfolio or any relevant link showcasing your
                   work?
                 </FormLabel>
-                <Input placeholder="Enter the link" />
+                <Input ref={portfolio} placeholder="Enter the link" />
               </FormControl>
             </div>
           </div>
+
+          {/* Seventh row */}
+          <div className="block">
+            <h2>What's your preferred way of contact?</h2>
+
+            {/* Way of contact */}
+            <div className="flex-container">
+              <div className="skill-column">
+                <FormControl>
+                  <Select placeholder="Choose one" isRequired>
+                    {["E-mail", "LinkedIn", "Slack"].map((contact) => (
+                      <option key={contact} value={contact}>
+                        {contact}
+                      </option>
+                    ))}
+                  </Select>
+                </FormControl>
+              </div>
+              <div className="skill-column">
+                <FormControl>
+                  <Input
+                    maxLength={50}
+                    placeholder="You can write a comment about this skill"
+                    onChange={(e) => {
+                      const charactersLeft = 50 - e.target.value.length;
+                      console.log(`Characters left: ${charactersLeft}`);
+                    }}
+                  />
+                </FormControl>
+              </div>
+            </div>
+          </div>
+
           {/* Seventh row */}
           <Button colorScheme="blue" type="submit">
             Button
