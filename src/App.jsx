@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import SurveyComponent from "./components/SurveyComponent/SurveyComponent";
 import HeroComponent from "./components/HeroComponent/HeroComponent";
 import SearchComponent from "./components/SearchComponent/SearchComponent";
+import AboutUsComponent from "./components/AboutUsComponent/AboutUsComponent";
 
 const App = () => {
   return (
@@ -18,6 +19,9 @@ const App = () => {
             <li>
               <Link to="/survey">Sign-up</Link>
             </li>
+            <li>
+              <Link to="/AboutUs">About us</Link>
+            </li>
           </ul>
         </div>
         <Routes>
@@ -30,6 +34,7 @@ const App = () => {
               </>
             }
           />
+          <Route path="/AboutUs" element={<AboutUsComponent />} />
           {/* Add other routes if needed */}
         </Routes>
         <Routes>
