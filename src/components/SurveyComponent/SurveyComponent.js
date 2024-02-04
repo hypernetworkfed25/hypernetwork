@@ -16,18 +16,61 @@ import {
   Box,
 } from "@chakra-ui/react";
 
+import { useRef } from "react";
+
 import "./SurveyComponent.css";
 
 const SurveyComponent = () => {
+  const firstName = useRef();
+
+  function handleOnSubmit(e) {
+    e.preventDefault();
+
+    const testUser = {
+      id: 1,
+      firstName: firstName.current.value,
+      lastName: "Redondo",
+      hyperEmail: "oliver.redondo@hyperisland.se",
+      confirmHyperEmail: "oliver.redondo@hyperisland.se",
+      program: "FED25",
+      languages: ["English", "Spanish", "Basque"],
+      hardSkills: [
+        {
+          skill: "Video editing",
+          comment: "Ask me -almost- anything about Premiere",
+        },
+        {
+          skill: "Javascript",
+          comment: "I like designing portfolios",
+        },
+        {
+          skill: "React",
+          comment: "I can build basic things",
+        },
+      ],
+      availability: "Yes",
+      portfolio: "https://www.oliver.com",
+      contact: {
+        email: "oliver@example.com",
+        linkedin: "https://www.linkedin.com/in/oliver",
+        slack: {
+          checked: true,
+          memberId: "U05MNJW0C78",
+        },
+      },
+    };
+    console.log(testUser);
+  }
+
   return (
     <div style={{ minHeight: "100vh" }}>
-      <form className="form">
+      <form onSubmit={handleOnSubmit} className="form">
         {/* First row */}
         <div className="flex-container">
           <div className="flex-box">
             <FormControl className="form-control" isRequired>
               <FormLabel>First Name</FormLabel>
-              <Input placeholder="Enter your name" />
+              <Input ref={firstName} placeholder="Enter your name" />
             </FormControl>
           </div>
           <div className="flex-box">
@@ -240,6 +283,10 @@ const SurveyComponent = () => {
               </FormControl>
             </div>
           </div>
+          {/* Seventh row */}
+          <Button colorScheme="blue" type="submit">
+            Button
+          </Button>
         </div>
       </form>
     </div>
