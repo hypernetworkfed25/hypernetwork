@@ -1,17 +1,27 @@
 /* Style for the overall form */
 form {
-  max-width: 600px;
-  margin: 0 auto;
+  padding: 0 20em;
+}
+.box {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: 1fr;
 }
 
-/* Style for each line of fields using Flexbox */
 .flex-container {
-  display: flex;
+  margin-bottom: 3em;
 }
+h2 {
+  padding-left: 300px;
+  font-size: 20px;
+}
+h1 {
+  font-size: 100px;
+}
+/* Style for each line of fields using Flexbox */
 
 /* Style for each box within the Flex container */
 .flex-box {
-  flex: 1;
   margin-right: 50px; /* Adjust spacing between boxes */
 }
 
