@@ -1,5 +1,6 @@
 import React from "react";
 import "./HeroComponent.css";
+import { Button } from "@chakra-ui/react";
 
 const HeroComponent = () => {
   return (
@@ -34,7 +35,11 @@ const HeroComponent = () => {
           projects, or exchange knowledge.
         </p>
       </div>
-      <span>Scroll</span>
+      <a href="#search-bar">
+        <Button colorScheme="teal" size="lg">
+          Scroll to database search
+        </Button>
+      </a>
     </div>
   );
 };
