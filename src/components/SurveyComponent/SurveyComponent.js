@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import languagesData from "../../data/languagesData.json";
 import {
   FormControl,
   FormLabel,
@@ -166,32 +167,25 @@ const SurveyComponent = () => {
             </FormControl>
           </div>
           <div className="flex-box">
-            <FormControl className="form-control" isRequired>
-              <FormLabel>Which languages do you speak?</FormLabel>
-              <Menu closeOnSelect={false}>
-                <MenuButton as={Button} rightIcon="">
-                  Pick your languages
-                </MenuButton>
-                <MenuList>
-                  <MenuOptionGroup defaultValue={["English"]} type="checkbox">
-                    {[
-                      "English",
-                      "Swedish",
-                      "Mandarin",
-                      "Urdu",
-                      "Basque",
-                      "German",
-                      "French",
-                    ].map((language) => (
-                      <MenuItemOption key={language} value={language}>
-                        {language}
-                      </MenuItemOption>
-                    ))}
-                  </MenuOptionGroup>
-                </MenuList>
-              </Menu>
-            </FormControl>
-          </div>
+  <FormControl className="form-control" isRequired>
+    <FormLabel>Which languages do you speak?</FormLabel>
+    <Menu closeOnSelect={false}>
+      <MenuButton as={Button} rightIcon="">
+        Pick your languages
+      </MenuButton>
+      <MenuList>
+        <MenuOptionGroup defaultValue={["English"]} type="checkbox">
+          {languagesData.map((language) => (
+            <MenuItemOption key={language} value={language}>
+              {language}
+            </MenuItemOption>
+          ))}
+        </MenuOptionGroup>
+      </MenuList>
+    </Menu>
+  </FormControl>
+</div>
+     
 
           {/* Fourth Row */}
           <div className="block">
