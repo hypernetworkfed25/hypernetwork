@@ -2,8 +2,7 @@ name: Deploy static content to Pages
 
 on:
   push:
-    branches: ["jinjing.wu/deploy-automatically"]
-    # branches: ["main"]
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
