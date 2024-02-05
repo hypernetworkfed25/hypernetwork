@@ -11,6 +11,7 @@ form {
 
 .flex-container {
   margin-bottom: 3em;
+  display: flex;
 }
 
 h2 {
@@ -36,5 +37,6 @@ h1 {
 
 /* Additional styles for FormControl components if needed */
 .form-control {
-  margin-bottom: 60px;
+  margin-bottom: 30px;
+  width: 300px;
 }
