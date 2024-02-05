@@ -31,6 +31,9 @@ jobs:
           node-version: 18
           cache: "npm"
 
+      - name: Install project dependencies
+        run: npm i
+
       - name: Build
         run: npm run build
 
