@@ -7,10 +7,13 @@ import HeroComponent from "./components/HeroComponent/HeroComponent";
 import SearchComponent from "./components/SearchComponent/SearchComponent";
 import AboutUsComponent from "./components/AboutUsComponent/AboutUsComponent";
 
+export const BASENAME =
+  process.env.NODE_ENV === "production" ? "/hypernetwork" : "";
+
 const App = () => {
   return (
     <ChakraProvider>
-      <Router>
+      <Router basename={BASENAME}>
         <div className="navbarContainer">
           <ul className="navbar">
             <li>
