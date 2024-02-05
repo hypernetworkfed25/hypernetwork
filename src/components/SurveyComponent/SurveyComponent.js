@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import languagesData from "../../data/languagesData.json";
+import hardSkillsData from "../../data/hardSkillsData.json";
+
 import {
   FormControl,
   FormLabel,
@@ -186,7 +188,7 @@ const SurveyComponent = () => {
   </FormControl>
 </div>
      
-
+     
           {/* Fourth Row */}
           <div className="block">
             <h2>Pick your main 3 skills</h2>
@@ -196,11 +198,10 @@ const SurveyComponent = () => {
               <div className="skill-column">
                 <FormControl>
                   <Select placeholder="Skill #1" isRequired>
-                    {["CSS", "Javascript", "React", "Angular", "Photoshop"].map(
-                      (skill) => (
-                        <option key={skill} value={skill}>
-                          {skill}
-                        </option>
+                  {hardSkillsData.map((skill) => (
+          <option key={skill} value={skill}>
+            {skill}
+          </option>
                       )
                     )}
                   </Select>
@@ -225,11 +226,10 @@ const SurveyComponent = () => {
               <div className="skill-column">
                 <FormControl isRequired>
                   <Select placeholder="Skill #2">
-                    {["CSS", "Javascript", "React", "Angular", "Photoshop"].map(
-                      (skill) => (
-                        <option key={skill} value={skill}>
-                          {skill}
-                        </option>
+                  {hardSkillsData.map((skill) => (
+          <option key={skill} value={skill}>
+            {skill}
+          </option>
                       )
                     )}
                   </Select>
@@ -255,11 +255,10 @@ const SurveyComponent = () => {
               <div className="skill-column">
                 <FormControl isRequired>
                   <Select placeholder="Skill #3">
-                    {["CSS", "Javascript", "React", "Angular", "Photoshop"].map(
-                      (skill) => (
-                        <option key={skill} value={skill}>
-                          {skill}
-                        </option>
+                  {hardSkillsData.map((skill) => (
+          <option key={skill} value={skill}>
+            {skill}
+          </option>
                       )
                     )}
                   </Select>
@@ -279,6 +278,8 @@ const SurveyComponent = () => {
               </div>
             </div>
           </div>
+        
+          
 
           {/* Fifth row */}
           <div className="flex-container">
