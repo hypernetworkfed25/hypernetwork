@@ -11,12 +11,29 @@
   align-items: center;
   width: 100%; /* This ensures the container takes the full width of its parent */
   padding-bottom: 50px;
-  background-image: url(background.jpg);
+  /* background-image: url(background.jpg); */
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+.about-text {
+  text-align: justify;
+  max-width: 600px;
+  font-size: 18px;
+}
+
 h1 {
   padding: 0;
   margin: 0;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  text-decoration: underline;
 }
