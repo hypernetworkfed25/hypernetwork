@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import userData from "../../data/users.json";
 import "./SearchComponent.css";
 import {
@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { useDebounceValue } from "usehooks-ts";
 import useFetch from "../../hooks/useFetch";
+import { useInView } from "framer-motion";
 
 import StudentComponent from "../StudentComponents/StudentComponent";
 const users = userData.users;
@@ -66,6 +67,9 @@ const SearchComponent = () => {
       ...{ hasPortfolio },
     }));
   };
+
+  const rootRef = useRef(null);
+  const isInView = useInView(rootRef, { once: true, margin: "0px" });
 
   useEffect(() => {
     // Filter users based on the search criteria
@@ -126,11 +130,15 @@ const SearchComponent = () => {
     <div
       style={{
         position: "relative",
+        opacity: isInView ? "1" : "0",
+        transition: "opacity 1800ms",
+        minHeight: "100vh",
       }}
+      ref={rootRef}
     >
       {/* Search  */}
       <div className="search-container">
-        <div className="search-bar">
+        <div className="search-bar" id="search-bar">
           {/* Search term input */}
           <input
             type="text"

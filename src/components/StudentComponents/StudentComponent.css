@@ -6,8 +6,9 @@
 }
 
 .student-container {
-  margin-top: 100px;
-
+  width: 97vw;
+  margin: 0 auto;
+  margin-top: 80px;
   display: flex;
   border-top: 2px solid black;
   flex-direction: column;
@@ -19,10 +20,10 @@ p {
 }
 .student-card {
   display: flex;
-  width: 100%;
+  width: 97vw;
   cursor: pointer;
 
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease;
   border-bottom: 2px solid black;
   color: rgba(0, 0, 0, 0.5);
 }
@@ -42,7 +43,7 @@ p {
    their background and text colors are inherited from .student-card when it has the 'expanded' class */
 .student-name,
 .student-info {
-  padding: 20px;
+  padding: 18px 0px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -56,8 +57,10 @@ p {
   grid-template-columns: 0.2fr 1fr;
 }
 .student-name {
-  font-size: 24px;
+  font-size: 48px;
   font-weight: 800;
+  color: black;
+  text-transform: uppercase;
 }
 .comment {
   border-bottom: 1px solid black;

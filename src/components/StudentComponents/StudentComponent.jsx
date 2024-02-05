@@ -23,10 +23,7 @@ const StudentComponent = ({ users }) => {
           onClick={() => handleCardClick(user.id)}
         >
           <div className="student-name" onClick={() => setExpandedId(user.id)}>
-            {" "}
-            <h2>
-              {user.firstName} {user.lastName}
-            </h2>
+            {user.firstName} {user.lastName}
           </div>
           <div className="student-info">
             <div className="student-detail">
