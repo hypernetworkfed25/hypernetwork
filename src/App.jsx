@@ -1,28 +1,53 @@
 import "./App.css";
 import React from "react";
 import { ChakraProvider } from "@chakra-ui/react";
-
-import StudentComponent from "./components/StudentComponents/StudentComponent";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import SurveyComponent from "./components/SurveyComponent/SurveyComponent";
+import HeroComponent from "./components/HeroComponent/HeroComponent";
 import SearchComponent from "./components/SearchComponent/SearchComponent";
+import AboutUsComponent from "./components/AboutUsComponent/AboutUsComponent";
 
 const App = () => {
   return (
     <ChakraProvider>
-      <div style={{ minHeight: "100vh" }}>
-        <h1 style={{ fontSize: "96px" }}>Hyper Network</h1>
-        <p>
-          Welcome to Hyper Network! Our student database is designed to be your
-          go-to resource for networking and skill-sharing. Whether you're on the
-          lookout for a project partner, need assistance with a particular
-          skill, or simply want to expand your network, you've come to the right
-          place. Note: The database is continuously growing, so if you don't see
-          a specific skill right away, keep checking back—it might just be a
-          matter of time until the perfect collaborator joins the community.
-        </p>
-      </div>
-
-      <SearchComponent />
-      <StudentComponent />
+      <Router>
+        <div className="navbarContainer">
+          <ul className="navbar">
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/survey">Sign-up</Link>
+            </li>
+            <li>
+              <Link to="/AboutUs">About us</Link>
+            </li>
+          </ul>
+        </div>
+        <Routes>
+          <Route path="/" element={<HeroComponent />} />
+          <Route
+            path="/survey"
+            element={
+              <>
+                <SurveyComponent />
+              </>
+            }
+          />
+          <Route path="/AboutUs" element={<AboutUsComponent />} />
+          {/* Add other routes if needed */}
+        </Routes>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <SearchComponent />
+              </>
+            }
+          />
+        </Routes>
+      </Router>
     </ChakraProvider>
   );
 };

@@ -1,4 +1,19 @@
-h1{
-  text-decoration: underline;
+h1 {
   text-align: center;
+  font-size: 96px;
+  margin-bottom: 50px;
+}
+
+.navbar {
+  display: flex;
+  margin-left: auto;
+  gap: 2em;
+  list-style: none;
+  margin-right: 5em;
+  margin-top: 1em;
+}
+
+.navbarContainer {
+  display: flex;
+  margin-left: auto;
 }
