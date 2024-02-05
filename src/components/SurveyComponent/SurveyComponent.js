@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import languagesData from "../../data/languagesData.json";
 import {
   FormControl,
   FormLabel,
@@ -167,15 +168,7 @@ const SurveyComponent = () => {
                 </MenuButton>
                 <MenuList>
                   <MenuOptionGroup defaultValue={["English"]} type="checkbox">
-                    {[
-                      "English",
-                      "Swedish",
-                      "Mandarin",
-                      "Urdu",
-                      "Basque",
-                      "German",
-                      "French",
-                    ].map((language) => (
+                    {languagesData.map((language) => (
                       <MenuItemOption key={language} value={language}>
                         {language}
                       </MenuItemOption>
