@@ -18,7 +18,7 @@ const HeroComponent = () => {
             <span>Note:</span> The database is continuously growing, so if you
             don't see a specific skill right away, keep checking back—it might
             just be a matter of time until the perfect collaborator joins the
-            community.
+            community!
           </p>
         </div>
 
