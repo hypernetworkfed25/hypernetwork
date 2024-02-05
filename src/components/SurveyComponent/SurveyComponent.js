@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import languagesData from "../../data/languagesData.json";
+import hardSkillsData from "../../data/hardSkillsData.json";
+
 import {
   FormControl,
   FormLabel,
