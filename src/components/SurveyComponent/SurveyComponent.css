@@ -1,14 +1,23 @@
 /* Style for the overall form */
 form {
-  padding: 0 20em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
 }
-
+body {
+  height: 100%;
+  width: 100%;
+}
 .box {
   margin-top: 50px;
   display: grid;
   grid-template-columns: 1fr;
 }
-
+.input-wide {
+  width: 100%; /* Or any specific width you prefer */
+  min-width: 500px;
+}
 .flex-container {
   margin-bottom: 3em;
   display: flex;
@@ -26,6 +35,8 @@ h1 {
 
 /* Style for each box within the Flex container */
 .flex-box {
+  display: flex;
+
   margin-right: 50px;
   /* Adjust spacing between boxes */
 }
@@ -38,5 +49,6 @@ h1 {
 /* Additional styles for FormControl components if needed */
 .form-control {
   margin-bottom: 30px;
-  width: 300px;
+  margin-left: 30px;
+  margin-right: 30px;
 }

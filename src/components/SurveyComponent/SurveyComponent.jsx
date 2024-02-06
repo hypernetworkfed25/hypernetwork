@@ -83,20 +83,28 @@ const SurveyComponent = () => {
   }
 
   return (
-    <div style={{ minHeight: "100vh" }}>
+    <body>
       <form onSubmit={handleOnSubmit} className="form">
         {/* First row */}
         <div className="flex-container">
           <div className="flex-box">
             <FormControl className="form-control" isRequired>
               <FormLabel>First Name</FormLabel>
-              <Input ref={firstName} placeholder="Enter your name" />
+              <Input
+                sx={{ width: "100%", minWidth: "300px" }}
+                ref={firstName}
+                placeholder="Enter your name"
+              />
             </FormControl>
           </div>
           <div className="flex-box">
             <FormControl className="form-control" isRequired>
               <FormLabel>Last Name</FormLabel>
-              <Input ref={lastName} placeholder="Enter your last name" />
+              <Input
+                sx={{ width: "100%", minWidth: "300px" }}
+                ref={lastName}
+                placeholder="Enter your last name"
+              />
             </FormControl>
           </div>
         </div>
@@ -107,6 +115,7 @@ const SurveyComponent = () => {
             <FormControl className="form-control" isRequired>
               <FormLabel>School e-mail</FormLabel>
               <Input
+                sx={{ width: "100%", minWidth: "300px" }}
                 ref={email}
                 type="email"
                 placeholder="Enter your Hyper Island e-mail"
@@ -121,6 +130,7 @@ const SurveyComponent = () => {
             >
               <FormLabel>Confirm school e-mail</FormLabel>
               <Input
+                sx={{ width: "100%", minWidth: "300px" }}
                 ref={emailConfirm}
                 type="email"
                 placeholder="Enter your Hyper Island e-mail"
@@ -202,6 +212,7 @@ const SurveyComponent = () => {
             <div className="skill-column">
               <FormControl>
                 <Input
+                  sx={{ width: "100%", minWidth: "500px" }}
                   maxLength={50}
                   placeholder="You can write a comment about this skill"
                   onChange={(e) => {
@@ -229,6 +240,7 @@ const SurveyComponent = () => {
             <div className="skill-column">
               <FormControl isRequired>
                 <Input
+                  sx={{ width: "100%", minWidth: "500px" }}
                   maxLength={50}
                   placeholder=" You can write a comment about this skill"
                   onChange={(e) => {
@@ -257,6 +269,7 @@ const SurveyComponent = () => {
             <div className="skill-column">
               <FormControl isRequired>
                 <Input
+                  sx={{ width: "100%", minWidth: "500px" }}
                   maxLength={50}
                   placeholder="You can write a comment about this skill"
                   onChange={(e) => {
@@ -371,7 +384,7 @@ const SurveyComponent = () => {
           Submit
         </Button>
       </form>
-    </div>
+    </body>
   );
 };
 
