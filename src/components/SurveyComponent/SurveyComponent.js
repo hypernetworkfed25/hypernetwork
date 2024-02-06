@@ -191,13 +191,11 @@ const SurveyComponent = () => {
             <div className="skill-column">
               <FormControl>
                 <Select placeholder="Skill #1" isRequired>
-                  {["CSS", "Javascript", "React", "Angular", "Photoshop"].map(
-                    (skill) => (
-                      <option key={skill} value={skill}>
-                        {skill}
-                      </option>
-                    )
-                  )}
+                  {hardSkillsData.map((skill) => (
+                    <option key={skill} value={skill}>
+                      {skill}
+                    </option>
+                  ))}
                 </Select>
               </FormControl>
             </div>
@@ -220,13 +218,11 @@ const SurveyComponent = () => {
             <div className="skill-column">
               <FormControl isRequired>
                 <Select placeholder="Skill #2">
-                  {["CSS", "Javascript", "React", "Angular", "Photoshop"].map(
-                    (skill) => (
-                      <option key={skill} value={skill}>
-                        {skill}
-                      </option>
-                    )
-                  )}
+                  {hardSkillsData.map((skill) => (
+                    <option key={skill} value={skill}>
+                      {skill}
+                    </option>
+                  ))}
                 </Select>
               </FormControl>
             </div>
@@ -250,13 +246,11 @@ const SurveyComponent = () => {
             <div className="skill-column">
               <FormControl isRequired>
                 <Select placeholder="Skill #3">
-                  {["CSS", "Javascript", "React", "Angular", "Photoshop"].map(
-                    (skill) => (
-                      <option key={skill} value={skill}>
-                        {skill}
-                      </option>
-                    )
-                  )}
+                  {hardSkillsData.map((skill) => (
+                    <option key={skill} value={skill}>
+                      {skill}
+                    </option>
+                  ))}
                 </Select>
               </FormControl>
             </div>
