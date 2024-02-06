@@ -34,6 +34,16 @@ const SurveyComponent = () => {
   const [isMatchingEmail, setIsMatchingEmail] = useState(true);
   const [isHyperIsland, setIsHyperIsland] = useState(true);
 
+  const [selectedLanguages, setSelectedLanguages] = useState([]);
+
+const handleLanguageChange = (selected) => {
+  // Combine the current selected languages with the newly selected ones
+  const newSelectedLanguages = [...selectedLanguages, ...selected];
+  // Remove duplicates from the combined array
+  const uniqueSelectedLanguages = Array.from(new Set(newSelectedLanguages));
+  setSelectedLanguages(uniqueSelectedLanguages);
+};
+
   function handleOnSubmit(e) {
     e.preventDefault();
 
@@ -59,7 +69,7 @@ const SurveyComponent = () => {
       hyperEmail: email.current.value,
       confirmHyperEmail: emailConfirm.current.value,
       program: program.current.value,
-      languages: ["English", "Spanish", "Basque"],
+      languages: selectedLanguages,
       hardSkills: [
         {
           skill: "Video editing",
@@ -174,7 +184,7 @@ const SurveyComponent = () => {
           <div className="flex-box">
             <FormControl className="form-control" isRequired>
               <FormLabel>Which languages do you speak?</FormLabel>
-              <Menu closeOnSelect={false}>
+              <Menu closeOnSelect={false} onChange={handleLanguageChange}>
                 <MenuButton as={Button} rightIcon="">
                   Pick your languages
                 </MenuButton>
