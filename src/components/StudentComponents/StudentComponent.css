@@ -10,7 +10,7 @@
   margin: 0 auto;
   margin-top: 80px;
   display: flex;
-  border-top: 2px solid black;
+
   flex-direction: column;
   align-items: center;
 }
@@ -22,15 +22,16 @@ p {
   display: flex;
   width: 97vw;
   cursor: pointer;
-
-  transition: background-color 0.2s ease;
   border-bottom: 2px solid black;
-  color: rgba(0, 0, 0, 0.5);
+  border-top: 2px solid black;
+  transition: background-color 0.2s ease;
+
+  color: black;
 }
 
 .student-card:hover {
   background-color: rgba(0, 0, 0, 0.5);
-  color: #fff;
+  color: #000000;
 }
 
 /* Styles for the expanded card */
@@ -44,10 +45,15 @@ p {
 .student-name,
 .student-info {
   padding: 18px 0px;
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: 50%;
+}
+
+.student-info {
+  margin-left: 20em;
 }
 .student-hard-skills {
   display: flex;
@@ -59,12 +65,25 @@ p {
 .student-name {
   font-size: 48px;
   font-weight: 800;
-  color: black;
+  padding-left: 1em;
+
   text-transform: uppercase;
 }
-.comment {
-  border-bottom: 1px solid black;
+
+/* Target the .project class within an expanded .student-card */
+/* This is the lines*/
+.student-card.expanded .student-hard-skills {
+  border-top: 2px solid rgb(4, 3, 3);
+  padding-top: 10px;
+  margin-top: 10px;
 }
-.project.expanded {
-  border-bottom: 1px solid black;
+/* Add a top border to the Language section */
+/* This is the lines*/
+.student-expanded-details .student-languages {
+  border-bottom: 2px solid rgb(0, 0, 0);
+  border-top: 2px solid rgb(0, 0, 0);
+  padding-top: 10px;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
 }

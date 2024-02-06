@@ -1,137 +1,136 @@
 {
-    "users": [
-      {
-        "id": 1,
-        "firstName": "Oliver",
-        "lastName": "Redondo",
-        "hyperEmail": "oliver.redondo@hyperisland.se",
-        "confirmHyperEmail": "oliver.redondo@hyperisland.se",
-        "program": "FED25",
-        "languages": ["English", "Spanish", "Basque"],
-        "hardSkills": [
-          {
-            "skill": "Video editing",
-            "comment": "Ask me -almost- anything about Premiere"
-          },
-          {
-            "skill": "Javascript",
-            "comment": "I like designing portfolios"
-          },
-          {
-            "skill": "React",
-            "comment": "I can build basic things"
-          }
-        ],
-        "availability": "Yes",
-        "portfolio": "https://www.oliver.com",
-        "contact": {
-          "email": "oliver@example.com",
-          "linkedin": "https://www.linkedin.com/in/oliver",
-          "slack": {
-            "checked": true,
-            "memberId": "U05MNJW0C78"
-          }
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Oliver",
+      "lastName": "Redondo",
+      "hyperEmail": "oliver.redondo@hyperisland.se",
+      "confirmHyperEmail": "oliver.redondo@hyperisland.se",
+      "program": "FED25",
+      "languages": ["English", "Spanish", "Basque"],
+      "hardSkills": [
+        {
+          "skill": "Video editing",
+          "comment": "Ask me -almost- anything about Premiere"
+        },
+        {
+          "skill": "Javascript",
+          "comment": "I like designing portfolios"
+        },
+        {
+          "skill": "React",
+          "comment": "I can build basic things"
         }
-      },
-      {
-        "id": 2,
-        "firstName": "Hifza",
-        "lastName": "Batool",
-        "email": "hifza.batool@hyperisland.se",
-        "confirmEmail": "hifza.batool@hyperisland.se",
-        "program": "Data Analyst",
-        "languages": [ "English","Urdu"],
-        "hardSkills": [
-          {
-            "skill": "HTML",
-            "comment": "Amazing skills"
-          },
-          {
-            "skill": "Javascript",
-            "comment": "Ninja"
-          },
-          {
-            "skill": "React",
-            "comment": "I'll be rich in a year"
-          }
-        ],
-        "availability": "Part-time",
-        "portfolio": "",
-        "contact": {
-          "email": "hifza@example.com",
-          "linkedin": "",
-          "slack": {
-            "checked": false,
-            "studentId": ""
-          }
-        }
-      },
-      {
-        "id": 3,
-        "firstName": "Ahmed",
-        "lastName": "Sharif",
-        "hyperEmail": "ahmed.sharif@hyperisland.se",
-        "confirmHyperEmail": "ahmed.sharif@hyperisland.se",
-        "program": "Design Lead",
-        "languages": ["English", "Swedish"],
-        "hardSkills": [
-          {
-            "skill": "React",
-            "comment": "Proficient"
-          },
-          {
-            "skill": "DJ",
-            "comment": "Hire me for your party"
-          },
-          {
-            "skill": "Acting",
-            "comment": "I want an Oscar"
-          }
-        ],
-        "availability": "Only paid projects",
-        "portfolio": "https://www.djahmedsharif.com",
-        "contact": {
-          "email": "ahmed@example.com",
-          "linkedin": "https://www.linkedin.com/in/ahmed",
-          "slack": {
-            "checked": false,
-            "memberId": ""
-          }
-        }
-      },
-      {
-        "id": 4,
-        "firstName": "Jinjing",
-        "lastName": "Wu",
-        "hyperEmail": "jinjing.wu@hyperisland.se",
-        "confirmHyperEmail": "jinjing.wu@hyperisland.se",
-        "program": "Digital Creative",
-        "languages": ["English", "Chinese"],
-        "hardSkills": [
-          {
-            "skill": "React",
-            "comment": "I'm a Senior developer"
-          },
-          {
-            "skill": "Opera",
-            "comment": "3 published albums"
-          },
-          {
-            "skill": "Cooking",
-            "comment": "Award winning chef"
-          }
-        ],
-        "availability": "Limited",
-        "portfolio": "https://www.theJJ.com",
-        "contact": {
-          "email": "jinjing@example.com",
-          "linkedin": "",
-          "slack": {
-            "checked": true,
-            "memberId": "U05N7T0JJNM"
-          }
+      ],
+      "availability": "Yes",
+      "portfolio": "https://www.oliver.com",
+      "contact": {
+        "email": "oliver@example.com",
+        "linkedin": "https://www.linkedin.com/in/oliver",
+        "slack": {
+          "checked": true,
+          "memberId": "U05MNJW0C78"
         }
       }
-     
-    ]
+    },
+    {
+      "id": 2,
+      "firstName": "Hifza",
+      "lastName": "Batool",
+      "email": "hifza.batool@hyperisland.se",
+      "confirmEmail": "hifza.batool@hyperisland.se",
+      "program": "Data Analyst",
+      "languages": ["English", "Urdu"],
+      "hardSkills": [
+        {
+          "skill": "HTML",
+          "comment": "Amazing skills"
+        },
+        {
+          "skill": "Javascript",
+          "comment": "Ninja"
+        },
+        {
+          "skill": "React",
+          "comment": "I'll be rich in a year"
+        }
+      ],
+      "availability": "Part-time",
+      "portfolio": "",
+      "contact": {
+        "email": "hifza@example.com",
+        "linkedin": "",
+        "slack": {
+          "checked": false,
+          "studentId": ""
+        }
+      }
+    },
+    {
+      "id": 3,
+      "firstName": "Ahmed",
+      "lastName": "Sharif",
+      "hyperEmail": "ahmed.sharif@hyperisland.se",
+      "confirmHyperEmail": "ahmed.sharif@hyperisland.se",
+      "program": "Design Lead",
+      "languages": ["English", "Swedish"],
+      "hardSkills": [
+        {
+          "skill": "React",
+          "comment": "Proficient"
+        },
+        {
+          "skill": "DJ",
+          "comment": "Hire me for your party"
+        },
+        {
+          "skill": "Acting",
+          "comment": "I want an Oscar"
+        }
+      ],
+      "availability": "Only paid projects",
+      "portfolio": "https://www.djahmedsharif.com",
+      "contact": {
+        "email": "ahmed@example.com",
+        "linkedin": "https://www.linkedin.com/in/ahmed",
+        "slack": {
+          "checked": false,
+          "memberId": ""
+        }
+      }
+    },
+    {
+      "id": 4,
+      "firstName": "Jinjing",
+      "lastName": "Wu",
+      "hyperEmail": "jinjing.wu@hyperisland.se",
+      "confirmHyperEmail": "jinjing.wu@hyperisland.se",
+      "program": "Digital Creative",
+      "languages": ["English", "Chinese", "swedish", "mandarin"],
+      "hardSkills": [
+        {
+          "skill": "React",
+          "comment": "I'm a Senior developer"
+        },
+        {
+          "skill": "Opera",
+          "comment": "3 published albums"
+        },
+        {
+          "skill": "Cooking",
+          "comment": "Award winning chef"
+        }
+      ],
+      "availability": "Limited",
+      "portfolio": "https://www.theJJ.com",
+      "contact": {
+        "email": "jinjing@example.com",
+        "linkedin": "",
+        "slack": {
+          "checked": true,
+          "memberId": "U05N7T0JJNM"
+        }
+      }
+    }
+  ]
 }

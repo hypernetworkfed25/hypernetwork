@@ -8,6 +8,8 @@
   padding: 2rem;
   box-sizing: border-box;
   /* Include padding in element's total width and height */
+
+  margin-top: 3em;
 }
 
 h1 {
@@ -31,6 +33,20 @@ p {
 
 .scroll-down-btn {
   margin-top: 2rem;
+  font-size: 20px;
+}
+
+img {
+  width: 50px;
+  padding-left: 15px;
+}
+
+.arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 10px;
+  margin-top: 60px;
 }
 
 @media (min-width: 768px) {
