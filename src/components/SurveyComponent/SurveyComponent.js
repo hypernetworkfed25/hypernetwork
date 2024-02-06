@@ -76,14 +76,7 @@ const SurveyComponent = () => {
       ],
       availability: availability.current.value,
       portfolio: portfolio.current.value,
-      contact: {
-        email: "oliver@example.com",
-        linkedin: "https://www.linkedin.com/in/oliver",
-        slack: {
-          checked: true,
-          memberId: "U05MNJW0C78",
-        },
-      },
+      contact: contactValue.current.value,
     };
 
     console.log("SUCCESS! THE TEST USER IS", testUser);
@@ -169,224 +162,214 @@ const SurveyComponent = () => {
             </FormControl>
           </div>
           <div className="flex-box">
-  <FormControl className="form-control" isRequired>
-    <FormLabel>Which languages do you speak?</FormLabel>
-    <Menu closeOnSelect={false}>
-      <MenuButton as={Button} rightIcon="">
-        Pick your languages
-      </MenuButton>
-      <MenuList>
-        <MenuOptionGroup defaultValue={["English"]} type="checkbox">
-          {languagesData.map((language) => (
-            <MenuItemOption key={language} value={language}>
-              {language}
-            </MenuItemOption>
-          ))}
-        </MenuOptionGroup>
-      </MenuList>
-    </Menu>
-  </FormControl>
-</div>
-     
-     
-          {/* Fourth Row */}
-          <div className="block">
-            <h2>Pick your main 3 skills</h2>
-
-            {/* Skill #1 */}
-            <div className="flex-container">
-              <div className="skill-column">
-                <FormControl>
-                  <Select placeholder="Skill #1" isRequired>
-                  {hardSkillsData.map((skill) => (
-          <option key={skill} value={skill}>
-            {skill}
-          </option>
-                      )
-                    )}
-                  </Select>
-                </FormControl>
-              </div>
-              <div className="skill-column">
-                <FormControl>
-                  <Input
-                    maxLength={50}
-                    placeholder="You can write a comment about this skill"
-                    onChange={(e) => {
-                      const charactersLeft = 50 - e.target.value.length;
-                      console.log(`Characters left: ${charactersLeft}`);
-                    }}
-                  />
-                </FormControl>
-              </div>
-            </div>
-
-            {/* Skill #2 */}
-            <div className="flex-container">
-              <div className="skill-column">
-                <FormControl isRequired>
-                  <Select placeholder="Skill #2">
-                  {hardSkillsData.map((skill) => (
-          <option key={skill} value={skill}>
-            {skill}
-          </option>
-                      )
-                    )}
-                  </Select>
-                </FormControl>
-              </div>
-              <div className="skill-column">
-                <FormControl isRequired>
-                  <Input
-                    maxLength={50}
-                    placeholder=" You can write a comment about this skill"
-                    onChange={(e) => {
-                      const charactersLeft = 50 - e.target.value.length;
-                      console.log(`Characters left: ${charactersLeft}`);
-                    }}
-                    minWidth="200px"
-                  />
-                </FormControl>
-              </div>
-            </div>
-
-            {/* Skill #3 */}
-            <div className="flex-container">
-              <div className="skill-column">
-                <FormControl isRequired>
-                  <Select placeholder="Skill #3">
-                  {hardSkillsData.map((skill) => (
-          <option key={skill} value={skill}>
-            {skill}
-          </option>
-                      )
-                    )}
-                  </Select>
-                </FormControl>
-              </div>
-              <div className="skill-column">
-                <FormControl isRequired>
-                  <Input
-                    maxLength={50}
-                    placeholder="You can write a comment about this skill"
-                    onChange={(e) => {
-                      const charactersLeft = 50 - e.target.value.length;
-                      console.log(`Characters left: ${charactersLeft}`);
-                    }}
-                  />
-                </FormControl>
-              </div>
-            </div>
+            <FormControl className="form-control" isRequired>
+              <FormLabel>Which languages do you speak?</FormLabel>
+              <Menu closeOnSelect={false}>
+                <MenuButton as={Button} rightIcon="">
+                  Pick your languages
+                </MenuButton>
+                <MenuList>
+                  <MenuOptionGroup defaultValue={["English"]} type="checkbox">
+                    {languagesData.map((language) => (
+                      <MenuItemOption key={language} value={language}>
+                        {language}
+                      </MenuItemOption>
+                    ))}
+                  </MenuOptionGroup>
+                </MenuList>
+              </Menu>
+            </FormControl>
           </div>
-        
-          
+        </div>
 
-          {/* Fifth row */}
+        {/* Fourth Row */}
+        <div className="block">
+          <h2>Pick your main 3 skills</h2>
+
+          {/* Skill #1 */}
           <div className="flex-container">
-            <div className="flex-box">
-              <FormControl
-                ref={availability}
-                className="form-control"
-                isRequired
-              >
-                <FormLabel>
-                  Are you available to collaborate with other students?
-                </FormLabel>
-                <Select placeholder="Pick your answer">
-                  {["Yes", "No", "Limited availability", "Only if paid"].map(
-                    (program) => (
-                      <option key={program} value={program}>
-                        {program}
-                      </option>
-                    )
-                  )}
+            <div className="skill-column">
+              <FormControl>
+                <Select placeholder="Skill #1" isRequired>
+                  {hardSkillsData.map((skill) => (
+                    <option key={skill} value={skill}>
+                      {skill}
+                    </option>
+                  ))}
                 </Select>
               </FormControl>
             </div>
-          </div>
-          {/* Sixth row */}
-          <div className="flex-container">
-            <div className="flex-box">
-              <FormControl className="form-control" isRequired>
-                <FormLabel>
-                  Do you have a portfolio or any relevant link showcasing your
-                  work?
-                </FormLabel>
-                <Input ref={portfolio} placeholder="Enter the link" />
+            <div className="skill-column">
+              <FormControl>
+                <Input
+                  maxLength={50}
+                  placeholder="You can write a comment about this skill"
+                  onChange={(e) => {
+                    const charactersLeft = 50 - e.target.value.length;
+                    console.log(`Characters left: ${charactersLeft}`);
+                  }}
+                />
               </FormControl>
             </div>
           </div>
 
-          {/* Seventh row */}
-          <div className="block">
-            <h2>What's your preferred way of contact?</h2>
-
-            {/* Way of contact */}
-            <div className="flex-container">
-              <div className="skill-column">
-                <FormControl>
-                  <Select
-                    placeholder="Choose one"
-                    isRequired
-                    onChange={(e) => {
-                      switch (e.target.value) {
-                        case "E-mail":
-                          contactValue.current.placeholder = "E-mail address";
-                          contactValue.current.value = email.current.value;
-                          contactValue.current.disabled = true;
-                          break;
-
-                        case "LinkedIn":
-                          contactValue.current.placeholder =
-                            "LinkedIn profile url";
-                          contactValue.current.value = "";
-                          contactValue.current.disabled = false;
-                          break;
-
-                        case "Slack":
-                          contactValue.current.placeholder = "Slack username";
-                          contactValue.current.value = "";
-                          contactValue.current.disabled = false;
-                          break;
-
-                        default:
-                          contactValue.current.placeholder = "Write something";
-                          contactValue.current.value = "";
-                          contactValue.current.disabled = true;
-                      }
-                    }}
-                    ref={contactOption}
-                  >
-                    {["E-mail", "LinkedIn", "Slack"].map((contact) => (
-                      <option key={contact} value={contact}>
-                        {contact}
-                      </option>
-                    ))}
-                  </Select>
-                </FormControl>
-              </div>
-              <div className="skill-column">
-                <FormControl>
-                  <Input
-                    maxLength={50}
-                    placeholder="Write something"
-                    onChange={(e) => {
-                      const charactersLeft = 50 - e.target.value.length;
-                      console.log(`Characters left: ${charactersLeft}`);
-                    }}
-                    ref={contactValue}
-                    disabled
-                  />
-                </FormControl>
-              </div>
+          {/* Skill #2 */}
+          <div className="flex-container">
+            <div className="skill-column">
+              <FormControl isRequired>
+                <Select placeholder="Skill #2">
+                  {hardSkillsData.map((skill) => (
+                    <option key={skill} value={skill}>
+                      {skill}
+                    </option>
+                  ))}
+                </Select>
+              </FormControl>
+            </div>
+            <div className="skill-column">
+              <FormControl isRequired>
+                <Input
+                  maxLength={50}
+                  placeholder=" You can write a comment about this skill"
+                  onChange={(e) => {
+                    const charactersLeft = 50 - e.target.value.length;
+                    console.log(`Characters left: ${charactersLeft}`);
+                  }}
+                  minWidth="200px"
+                />
+              </FormControl>
             </div>
           </div>
 
-          {/* Seventh row */}
-          <Button colorScheme="blue" type="submit">
-            Button
-          </Button>
+          {/* Skill #3 */}
+          <div className="flex-container">
+            <div className="skill-column">
+              <FormControl isRequired>
+                <Select placeholder="Skill #3">
+                  {hardSkillsData.map((skill) => (
+                    <option key={skill} value={skill}>
+                      {skill}
+                    </option>
+                  ))}
+                </Select>
+              </FormControl>
+            </div>
+            <div className="skill-column">
+              <FormControl isRequired>
+                <Input
+                  maxLength={50}
+                  placeholder="You can write a comment about this skill"
+                  onChange={(e) => {
+                    const charactersLeft = 50 - e.target.value.length;
+                    console.log(`Characters left: ${charactersLeft}`);
+                  }}
+                />
+              </FormControl>
+            </div>
+          </div>
         </div>
+
+        {/* Fifth row */}
+        <div className="flex-container">
+          <div className="flex-box">
+            <FormControl className="form-control" isRequired>
+              <FormLabel>
+                Are you available to collaborate with other students?
+              </FormLabel>
+              <Select ref={availability} placeholder="Pick your answer">
+                {["Yes", "No", "Limited availability", "Only if paid"].map(
+                  (availability) => (
+                    <option key={availability} value={availability}>
+                      {availability}
+                    </option>
+                  )
+                )}
+              </Select>
+            </FormControl>
+          </div>
+        </div>
+        {/* Sixth row */}
+        <div className="flex-container">
+          <div className="flex-box">
+            <FormControl className="form-control">
+              <FormLabel>
+                Do you have a portfolio or any relevant link showcasing your
+                work?
+              </FormLabel>
+              <Input ref={portfolio} placeholder="Enter the link" />
+            </FormControl>
+          </div>
+        </div>
+
+        {/* Seventh row */}
+        <div className="block">
+          <h2>What's your preferred way of contact?</h2>
+
+          {/* Way of contact */}
+          <div className="flex-container">
+            <div className="skill-column">
+              <FormControl>
+                <Select
+                  placeholder="Choose one"
+                  isRequired
+                  onChange={(e) => {
+                    switch (e.target.value) {
+                      case "E-mail":
+                        contactValue.current.placeholder = "E-mail address";
+                        contactValue.current.value = email.current.value;
+                        contactValue.current.disabled = true;
+                        break;
+
+                      case "LinkedIn":
+                        contactValue.current.placeholder =
+                          "Enter your LinkedIn profile url";
+                        contactValue.current.value = "";
+                        contactValue.current.disabled = false;
+                        break;
+
+                      case "Slack":
+                        contactValue.current.placeholder = "Slack username";
+                        contactValue.current.value = "";
+                        contactValue.current.disabled = false;
+                        break;
+
+                      default:
+                        contactValue.current.placeholder = "Write something";
+                        contactValue.current.value = "";
+                        contactValue.current.disabled = true;
+                    }
+                  }}
+                  ref={contactOption}
+                >
+                  {["E-mail", "LinkedIn", "Slack"].map((contact) => (
+                    <option key={contact} value={contact}>
+                      {contact}
+                    </option>
+                  ))}
+                </Select>
+              </FormControl>
+            </div>
+            <div className="skill-column">
+              <FormControl>
+                <Input
+                  maxLength={50}
+                  placeholder=""
+                  onChange={(e) => {
+                    const charactersLeft = 50 - e.target.value.length;
+                    console.log(`Characters left: ${charactersLeft}`);
+                  }}
+                  ref={contactValue}
+                  disabled
+                />
+              </FormControl>
+            </div>
+          </div>
+        </div>
+
+        {/* Seventh row */}
+        <Button colorScheme="green" type="submit">
+          Submit
+        </Button>
       </form>
     </div>
   );
