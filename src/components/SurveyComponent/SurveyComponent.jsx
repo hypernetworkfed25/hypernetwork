@@ -184,12 +184,12 @@ const handleLanguageChange = (selected) => {
           <div className="flex-box">
             <FormControl className="form-control" isRequired>
               <FormLabel>Which languages do you speak?</FormLabel>
-              <Menu closeOnSelect={false} onChange={handleLanguageChange}>
+              <Menu closeOnSelect={false} >
                 <MenuButton as={Button} rightIcon="">
                   Pick your languages
                 </MenuButton>
                 <MenuList>
-                  <MenuOptionGroup defaultValue={["English"]} type="checkbox">
+                  <MenuOptionGroup onChange={handleLanguageChange} type="checkbox">
                     {languagesData.map((language) => (
                       <MenuItemOption key={language} value={language}>
                         {language}
