@@ -296,8 +296,12 @@ const SearchComponent = () => {
       </div>
 
       {/* Results of filtered users */}
-      {loading && <div>Loading...</div>}
-      {error && <div>Some errors happing, please wait a while and retry.</div>}
+      {loading && <div className="loading">Loading...</div>}
+      {error && (
+        <div className="error">
+          Some errors happing, please wait a while and retry.
+        </div>
+      )}
       {!error && !loading && <StudentComponent users={students} />}
     </div>
   );
