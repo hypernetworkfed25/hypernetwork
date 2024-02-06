@@ -39,11 +39,11 @@ const HeroComponent = () => {
           </p>
         </div>
       </div>
-        <a href="#search-bar" className="scroll-down-btn">
-          <Button colorScheme="gray" size="lg">
-            🔎 Search
-          </Button>
-        </a>
+      <a href="#search-bar" className="scroll-down-btn">
+        <Button colorScheme="gray" size="lg">
+          🔎 Search
+        </Button>
+      </a>
     </div>
   );
 };
