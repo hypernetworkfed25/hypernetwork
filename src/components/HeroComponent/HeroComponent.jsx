@@ -1,6 +1,6 @@
 import React from "react";
 import "./HeroComponent.css";
-import { Button } from "@chakra-ui/react";
+import downChevron from "./down-chevron.png"; // Import the image
 
 const HeroComponent = () => {
   return (
@@ -39,11 +39,11 @@ const HeroComponent = () => {
           </p>
         </div>
       </div>
-      <a href="#search-bar" className="scroll-down-btn">
-        <Button colorScheme="gray" size="lg">
-          🔎 Search
-        </Button>
-      </a>
+      <div className="arrow">
+        <a href="#search-bar" className="scroll-down-btn">
+          Search <img src={downChevron} alt="arrow" />
+        </a>
+      </div>
     </div>
   );
 };
