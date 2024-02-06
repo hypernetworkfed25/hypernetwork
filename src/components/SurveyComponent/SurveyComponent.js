@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import languagesData from "../../data/languagesData.json";
+import hardSkillsData from "../../data/hardSkillsData.json";
+
 import {
   FormControl,
   FormLabel,
@@ -167,15 +170,7 @@ const SurveyComponent = () => {
                 </MenuButton>
                 <MenuList>
                   <MenuOptionGroup defaultValue={["English"]} type="checkbox">
-                    {[
-                      "English",
-                      "Swedish",
-                      "Mandarin",
-                      "Urdu",
-                      "Basque",
-                      "German",
-                      "French",
-                    ].map((language) => (
+                    {languagesData.map((language) => (
                       <MenuItemOption key={language} value={language}>
                         {language}
                       </MenuItemOption>
@@ -196,13 +191,11 @@ const SurveyComponent = () => {
             <div className="skill-column">
               <FormControl>
                 <Select placeholder="Skill #1" isRequired>
-                  {["CSS", "Javascript", "React", "Angular", "Photoshop"].map(
-                    (skill) => (
-                      <option key={skill} value={skill}>
-                        {skill}
-                      </option>
-                    )
-                  )}
+                  {hardSkillsData.map((skill) => (
+                    <option key={skill} value={skill}>
+                      {skill}
+                    </option>
+                  ))}
                 </Select>
               </FormControl>
             </div>
@@ -225,13 +218,11 @@ const SurveyComponent = () => {
             <div className="skill-column">
               <FormControl isRequired>
                 <Select placeholder="Skill #2">
-                  {["CSS", "Javascript", "React", "Angular", "Photoshop"].map(
-                    (skill) => (
-                      <option key={skill} value={skill}>
-                        {skill}
-                      </option>
-                    )
-                  )}
+                  {hardSkillsData.map((skill) => (
+                    <option key={skill} value={skill}>
+                      {skill}
+                    </option>
+                  ))}
                 </Select>
               </FormControl>
             </div>
@@ -255,13 +246,11 @@ const SurveyComponent = () => {
             <div className="skill-column">
               <FormControl isRequired>
                 <Select placeholder="Skill #3">
-                  {["CSS", "Javascript", "React", "Angular", "Photoshop"].map(
-                    (skill) => (
-                      <option key={skill} value={skill}>
-                        {skill}
-                      </option>
-                    )
-                  )}
+                  {hardSkillsData.map((skill) => (
+                    <option key={skill} value={skill}>
+                      {skill}
+                    </option>
+                  ))}
                 </Select>
               </FormControl>
             </div>
