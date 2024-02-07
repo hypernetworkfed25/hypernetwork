@@ -19,15 +19,30 @@ const users = userData.users;
 const GET_STUDENTS_API =
   "https://hypernetworkserver.jinjingwu.workers.dev/api/hypernetwork";
 
-const uniqueHardSkills = Array.from(
-  new Set(
-    users.flatMap((user) => user.hardSkills.map((hardSkill) => hardSkill.skill))
-  )
-);
+const programs = [
+  "Frontend Developer",
+  "Data Analyst",
+  "Design Lead",
+  "Digital Creative",
+];
 
-const uniqueLanguages = Array.from(
-  new Set(users.flatMap((user) => user.languages))
-);
+const uniqueHardSkills = [
+  "Video Editing",
+  "JavaScript",
+  "React",
+  "HTML",
+  "Git",
+  "CSS",
+];
+
+const uniqueLanguages = [
+  "English",
+  "Spanish",
+  "Basque",
+  "Urdu",
+  "Swedish",
+  "Chinese",
+];
 
 const SearchComponent = () => {
   const [searchText, setSearchText] = useState("");
@@ -161,38 +176,36 @@ const SearchComponent = () => {
               </MenuButton>
               <MenuList minWidth="240px">
                 <MenuOptionGroup type="checkbox">
-                  {[...new Set(users.map((user) => user.program))].map(
-                    (program, i) => (
-                      <MenuItemOption
-                        key={i}
-                        value={program}
-                        onClick={() => {
-                          // Check if the program is already selected
-                          const isProgramSelected =
-                            selectedProgram.includes(program);
+                  {programs.map((program, i) => (
+                    <MenuItemOption
+                      key={i}
+                      value={program}
+                      onClick={() => {
+                        // Check if the program is already selected
+                        const isProgramSelected =
+                          selectedProgram.includes(program);
 
-                          // If selected, remove it; otherwise, add it
-                          setSelectedProgram((prevSelectedProgram) =>
-                            isProgramSelected
-                              ? prevSelectedProgram.filter(
-                                  (selected) => selected !== program
-                                )
-                              : [...prevSelectedProgram, program]
-                          );
+                        // If selected, remove it; otherwise, add it
+                        setSelectedProgram((prevSelectedProgram) =>
+                          isProgramSelected
+                            ? prevSelectedProgram.filter(
+                                (selected) => selected !== program
+                              )
+                            : [...prevSelectedProgram, program]
+                        );
 
-                          searchTermHandler({
-                            programs: isProgramSelected
-                              ? [...searchTerm.programs].filter(
-                                  (selected) => selected !== program
-                                )
-                              : [...searchTerm.programs, program],
-                          });
-                        }}
-                      >
-                        {program}
-                      </MenuItemOption>
-                    )
-                  )}
+                        searchTermHandler({
+                          programs: isProgramSelected
+                            ? [...searchTerm.programs].filter(
+                                (selected) => selected !== program
+                              )
+                            : [...searchTerm.programs, program],
+                        });
+                      }}
+                    >
+                      {program}
+                    </MenuItemOption>
+                  ))}
                 </MenuOptionGroup>
               </MenuList>
             </Menu>
